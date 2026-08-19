@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP Launch Kit – Generator</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:#eef9ff;color:#33556b;line-height:1.6;}
+  .wrap{max-width:760px;margin:0 auto;padding:20px;}
+  header{background:linear-gradient(135deg,#9fd8ff,#d6f2ff);padding:18px 0;margin-bottom:24px;}
+  nav{display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-weight:bold;color:#2c6d8f;font-size:20px;}
+  a{color:#3b7ea1;}
+  label{display:block;font-weight:bold;margin:14px 0 6px;color:#2c6d8f;}
+  input[type=text],select,textarea{width:100%;padding:12px;border:2px solid #bfe0f0;border-radius:10px;font-size:15px;background:#fff;}
+  .btn{display:inline-block;background:#e07b4f;color:#fff;border:none;padding:13px 26px;border-radius:30px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:18px;}
+  .btn:hover{background:#c9683f;}
+  .result{margin-top:26px;background:#fff;border-radius:14px;padding:22px;box-shadow:0 4px 14px rgba(80,140,170,.12);}
+  .result h3{color:#e07b4f;margin:18px 0 8px;}
+  .result h3:first-child{margin-top:0;}
+  .chip{display:inline-block;background:#d6f2ff;color:#2c6d8f;border-radius:20px;padding:6px 12px;margin:4px 4px 0 0;font-size:14px;}
+  .copy{background:#fff;border:2px solid #7ec8e3;color:#3b7ea1;border-radius:20px;padding:4px 12px;cursor:pointer;font-size:13px;float:right;}
+  .title-item{background:#f4fbff;border-radius:10px;padding:10px 14px;margin-bottom:8px;}
+  textarea{min-height:110px;resize:vertical;}
+  .note{font-size:13px;color:#7a9db1;margin-top:8px;}
+  #paywall{display:none;position:fixed;inset:0;background:rgba(30,60,80,.55);z-index:20;align-items:center;justify-content:center;}
+  #paywall .box{background:#fff;border-radius:18px;padding:34px;max-width:400px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.25);}
+  #paywall h2{color:#2c6d8f;margin-bottom:10px;}
+  .small{font-size:13px;color:#7a9db1;}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="logo">KDP Launch Kit</div><a href="index.html">← Back to home</a></div></header>
+
+<div class="wrap">
+  <h1 style="color:#2c6d8f;">Book Launch Kit Generator</h1>
+  <p class="small">Free for 3 uses. After that, unlock unlimited generations for $9.99.</p>
+
+  <label for="topic">Book topic (e.g. unicorn, number tracing, space exploration)</label>
+  <input type="text" id="topic" placeholder="unicorn">
+
+  <label for="type">Book type</label>
+  <select id="type">
+    <option value="children">Children's Picture Book</option>
+    <option value="lowcontent">Activity / Coloring / Workbook</option>
+    <option value="fiction">Fiction Novel</option>
+    <option value="nonfiction">Non-Fiction Guide</option>
+  </select>
+
+  <label for="age">Target audience (optional, e.g. ages 3-6)</label>
+  <input type="text" id="age" placeholder="ages 3-6">
+
+  <label for="benefits">Main benefits, comma separated (optional, e.g. builds confidence, easy to read, fun illustrations)</label>
+  <textarea id="benefits" placeholder="builds confidence, easy to read, fun illustrations"></textarea>
+
+  <button class="btn" id="generate">Generate My Launch Kit</button>
+
+  <div class="result" id="result" style="display:none;">
+    <h3>Title Ideas <button class="copy" data-target="titles">Copy</button></h3>
+    <div id="titles"></div>
+    <h3>Amazon Description <button class="copy" data-target="description">Copy</button></h3>
+    <textarea id="description" readonly></textarea>
+    <h3>7 Keywords <button class="copy" data-target="keywords">Copy</button></h3>
+    <div id="keywords"></div>
+    <h3>Suggested Categories</h3>
+    <div id="categories"></div>
+  </div>
+</div>
+
+<div id="paywall">
+  <div class="box">
+    <h2>You've used your 3 free tries</h2>
+    <p>Unlock unlimited title ideas, descriptions and keywords for your next books.</p>
+    <p style="margin:14px 0;"><b style="font-size:26px;color:#2c6d8f;">$9.99</b> one-time</p>
+    <!-- TODO: 替换成你的 Creem 结账链接 -->
+    <a class="btn" href="https://creem.io/your-product-link" style="text-decoration:none;">Get Unlimited Access</a>
+    <p class="small" style="margin-top:10px;">Instant access after purchase</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var CONFIG={
+    children:{
+      phrase:"gentle bedtime story",
+      audience:"keeps little ones engaged and asking for more",
+      verb:"introduce the magic of",
+      age:"ages 3-8",
+      titles:function(t){return [
+        "The Little "+t+" Who Dreamed Big",
+        "My First "+t+" Adventure",
+        t+" Learns to Be Brave",
+        "The Day "+t+" Found a Friend",
+        t+"'s Bedtime Journey",
+        "Little "+t+", Big Heart"
+      ];},
+      keywords:function(t){return [
+        "bedtime story for kids",
+        "children's picture book",
+        "kids books about "+t.toLowerCase(),
+        "read aloud books for toddlers",
+        "gift books for kids",
+        "preschool story books",
+        t.toLowerCase()+" book for children"
+      ];},
+      categories:["Children's Books > Literature & Fiction > Bedtime & Dreaming","Children's Books > Growing Up & Facts of Life > Friendship"]
+    },
+    lowcontent:{
+      phrase:"screen-free activity book",
+      audience:"keeps kids busy and learning away from screens",
+      verb:"help your child practice",
+      age:"ages 3-6",
+      titles:function(t){return [
+        t+" Coloring Book for Kids Ages 4-8",
+        t+" Activity Book for Toddlers",
+        "Big Book of "+t+" for Little Hands",
+        "My First "+t+" Workbook",
+        t+" Tracing Practice for Preschoolers",
+        t+" Dot-to-Dot Fun for Kids"
+      ];},
+      keywords:function(t){var k=t.toLowerCase();return [
+        k+" coloring book",
+        "activity book for kids ages 4-8",
+        k+" workbook for toddlers",
+        "preschool activity book",
+        "screen free kids activities",
+        k+" game book",
+        "kids coloring and activity book"
+      ];},
+      categories:["Children's Books > Activities, Crafts & Games > Activity Books","Children's Books > Education & Reference > Math"]
+    },
+    fiction:{
+      phrase:"captivating novel",
+      audience:"pulls readers in from the first page",
+      verb:"escape into the world of",
+      age:"young adult and adult readers",
+      titles:function(t){return [
+        "The "+t+" Chronicles",
+        "Shadows of "+t,
+        "Beyond the "+t+" Gate",
+        "The Last "+t+" of Winter",
+        t+" Rising",
+        "The "+t+" Legacy"
+      ];},
+      keywords:function(t){var k=t.toLowerCase();return [
+        k+" novel",
+        "books about "+k,
+        "fiction bestseller",
+        k+" series book one",
+        "fantasy adventure novel",
+        k+" universe",
+        "kindle books fiction"
+      ];},
+      categories:["Literature & Fiction > Genre Fiction > Fantasy","Literature & Fiction > Action & Adventure"]
+    },
+    nonfiction:{
+      phrase:"practical guide",
+      audience:"turns complex ideas into simple steps",
+      verb:"master",
+      age:"beginners and busy learners",
+      titles:function(t){return [
+        "The Complete "+t+" Guide for Beginners",
+        t+" Made Simple",
+        "Mastering "+t+" in 30 Days",
+        "The "+t+" Handbook",
+        "Everything You Need to Know About "+t,
+        t+" Essentials: A Practical Guide"
+      ];},
+      keywords:function(t){var k=t.toLowerCase();return [
+        k+" for beginners",
+        k+" guide 2026",
+        "learn "+k+" step by step",
+        k+" handbook",
+        k+" made easy",
+        "practical "+k+" tips",
+        k+" skills book"
+      ];},
+      categories:["Business & Money > Skills","Self-Help > Personal Transformation"]
+    }
+  };
+
+  function titleCase(s){return s.trim().replace(/\w\S*/g,function(w){return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();});}
+
+  var used=parseInt(localStorage.getItem('kdpkit_used')||'0',10);
+  var LIMIT=3;
+
+  function showPaywall(){document.getElementById('paywall').style.display='flex';}
+
+  function copyText(id,btn){
+    var el=document.getElementById(id);
+    var text=el.tagName==='TEXTAREA'?el.value:el.innerText;
+    function done(){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy';},1500);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,function(){fallback();});
+    }else{fallback();}
+    function fallback(){
+      var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);
+    }
+  }
+
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){copyText(b.getAttribute('data-target'),b);});
+  });
+
+  document.getElementById('generate').addEventListener('click',function(){
+    if(used>=LIMIT){showPaywall();return;}
+    var topic=titleCase(document.getElementById('topic').value||'Your Topic');
+    var type=document.getElementById('type').value;
+    var age=document.getElementById('age').value.trim()||CONFIG[type].age;
+    var benefits=document.getElementById('benefits').value.trim();
+    var cfg=CONFIG[type];
+
+    var titles=cfg.titles(topic);
+    var subtitle='A '+cfg.phrase+' for '+age;
+    var desc=buildDescription(topic,type,age,benefits,cfg);
+
+    document.getElementById('titles').innerHTML=titles.map(function(t,i){
+      return '<div class="title-item"><b>'+(i+1)+'. '+t+'</b><br><span class="small">Subtitle: '+subtitle+'</span></div>';
+    }).join('');
+    document.getElementById('description').value=desc;
+    document.getElementById('keywords').innerHTML=cfg.keywords(topic).map(function(k){
+      return '<span class="chip">'+k+'</span>';
+    }).join('');
+    document.getElementById('categories').innerHTML=cfg.categories.map(function(c){
+      return '<span class="chip">'+c+'</span>';
+    }).join('');
+    document.getElementById('result').style.display='block';
+    document.getElementById('result').scrollIntoView({behavior:'smooth'});
+
+    used++;
+    localStorage.setItem('kdpkit_used',String(used));
+  });
+
+  function buildDescription(topic,type,age,benefits,cfg){
+    var lines=['Looking for a '+cfg.phrase+' that '+cfg.audience+'? "'+topic+'" is exactly what you need — an easy, enjoyable way to '+cfg.verb+' '+topic.toLowerCase()+'.'];
+    lines.push('');
+    if(benefits){
+      lines.push('Inside you\'ll find:');
+      benefits.split(/[,;]/).forEach(function(b){
+        b=b.trim();if(b)lines.push('• '+b.charAt(0).toUpperCase()+b.slice(1));
+      });
+    }else{
+      lines.push('Inside you\'ll find:');
+      lines.push('• Content carefully designed for '+age);
+      lines.push('• An approach that makes '+topic.toLowerCase()+' easy and fun');
+      lines.push('• Everything you need to get started right away');
+    }
+    lines.push('');
+    lines.push('Perfect for '+age+'. Click "Buy Now" to get instant access — your download is available immediately after purchase.');
+    return lines.join('\n');
+  }
+})();
+</script>
+</body>
+</html>
