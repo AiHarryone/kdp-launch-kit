@@ -25,7 +25,7 @@
   textarea{min-height:110px;resize:vertical;}
   .note{font-size:13px;color:#7a9db1;margin-top:8px;}
   #paywall{display:none;position:fixed;inset:0;background:rgba(30,60,80,.55);z-index:20;align-items:center;justify-content:center;}
-  #paywall .box{background:#fff;border-radius:18px;padding:34px;max-width:400px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.25);}
+  #paywall .box{background:#fff;border-radius:18px;padding:34px;max-width:420px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.25);}
   #paywall h2{color:#2c6d8f;margin-bottom:10px;}
   .small{font-size:13px;color:#7a9db1;}
 </style>
@@ -74,7 +74,9 @@
     <p>Unlock unlimited title ideas, descriptions and keywords for your next books.</p>
     <p style="margin:14px 0;"><b style="font-size:26px;color:#2c6d8f;">$9.99</b> one-time</p>
     <a class="btn" href="https://www.creem.io/payment/prod_5W0dpkrCU5C8iS3uO6EdhW" style="text-decoration:none;">Get Unlimited Access</a>
-    <p class="small" style="margin-top:10px;">Instant access after purchase</p>
+    <p class="small" style="margin:10px 0 6px;">Already purchased? Enter your unlock code:</p>
+    <input type="text" id="unlockInput" placeholder="e.g. KDP-XXXX-2026" style="width:100%;padding:10px;border:2px solid #bfe0f0;border-radius:8px;font-size:15px;box-sizing:border-box;">
+    <button id="unlockBtn" style="margin-top:8px;background:#7ec8e3;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:bold;cursor:pointer;width:100%;">Unlock</button>
   </div>
 </div>
 
@@ -183,6 +185,16 @@
 
   var used=parseInt(localStorage.getItem('kdpkit_used')||'0',10);
   var LIMIT=3;
+  var UNLOCK_CODE='KDP-5W0D-2026';
+  (function(){
+    try{
+      var m=location.search.match(/[?&]unlock=([^&]+)/);
+      if(m && decodeURIComponent(m[1]).toUpperCase()===UNLOCK_CODE){
+        localStorage.setItem('kdpkit_unlocked','1');
+        used=0;
+      }
+    }catch(e){}
+  })();
 
   function showPaywall(){document.getElementById('paywall').style.display='flex';}
 
@@ -190,13 +202,13 @@
     var el=document.getElementById(id);
     var text=el.tagName==='TEXTAREA'?el.value:el.innerText;
     function done(){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy';},1500);}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done,function(){fallback();});
-    }else{fallback();}
     function fallback(){
       var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
       try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);
     }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,function(){fallback();});
+    }else{fallback();}
   }
 
   document.querySelectorAll('.copy').forEach(function(b){
@@ -204,7 +216,7 @@
   });
 
   document.getElementById('generate').addEventListener('click',function(){
-    if(used>=LIMIT){showPaywall();return;}
+    if(localStorage.getItem('kdpkit_unlocked')!=='1' && used>=LIMIT){showPaywall();return;}
     var topic=titleCase(document.getElementById('topic').value||'Your Topic');
     var type=document.getElementById('type').value;
     var age=document.getElementById('age').value.trim()||CONFIG[type].age;
@@ -230,6 +242,17 @@
 
     used++;
     localStorage.setItem('kdpkit_used',String(used));
+  });
+
+  document.getElementById('unlockBtn').addEventListener('click',function(){
+    var v=document.getElementById('unlockInput').value.trim().toUpperCase();
+    if(v===UNLOCK_CODE){
+      localStorage.setItem('kdpkit_unlocked','1');
+      used=0;
+      document.getElementById('paywall').style.display='none';
+    }else{
+      alert('Wrong code. Check your purchase email for the unlock code.');
+    }
   });
 
   function buildDescription(topic,type,age,benefits,cfg){
