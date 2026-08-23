@@ -185,16 +185,13 @@
 
   var used=parseInt(localStorage.getItem('kdpkit_used')||'0',10);
   var LIMIT=3;
-  var UNLOCK_CODE='KDP-5W0D-2026';
-  (function(){
-    try{
-      var m=location.search.match(/[?&]unlock=([^&]+)/);
-      if(m && decodeURIComponent(m[1]).toUpperCase()===UNLOCK_CODE){
-        localStorage.setItem('kdpkit_unlocked','1');
-        used=0;
-      }
-    }catch(e){}
-  })();
+  // Unlock codes are validated server-side via a Cloudflare Worker proxy.
+  // No hardcoded codes live in this file anymore.
+  var UNLOCK_API='https://kdp-unlock.REPLACE_WORKER_SUBDOMAIN.workers.dev/unlock';
+  // Device id: stable per browser, used as the activation instance name so one
+  // code can't be activated from unlimited devices by clearing localStorage.
+  var INSTANCE_ID=localStorage.getItem('kdpkit_instance')||('inst-'+Math.random().toString(36).slice(2)+Date.now().toString(36));
+  localStorage.setItem('kdpkit_instance',INSTANCE_ID);
 
   function showPaywall(){document.getElementById('paywall').style.display='flex';}
 
@@ -245,14 +242,29 @@
   });
 
   document.getElementById('unlockBtn').addEventListener('click',function(){
-    var v=document.getElementById('unlockInput').value.trim().toUpperCase();
-    if(v===UNLOCK_CODE){
-      localStorage.setItem('kdpkit_unlocked','1');
-      used=0;
-      document.getElementById('paywall').style.display='none';
-    }else{
-      alert('Wrong code. Check your purchase email for the unlock code.');
-    }
+    var v=document.getElementById('unlockInput').value.trim();
+    if(!v){alert('Please enter your unlock code.');return;}
+    var btn=this;
+    btn.disabled=true;btn.textContent='Checking…';
+    fetch(UNLOCK_API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({key:v,instanceName:INSTANCE_ID})
+    }).then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+    .then(function(res){
+      if(res.ok && res.d.ok){
+        localStorage.setItem('kdpkit_unlocked','1');
+        used=0;
+        document.getElementById('paywall').style.display='none';
+        alert('Unlocked! Enjoy unlimited generations.');
+      }else{
+        alert(res.d.error || 'Invalid unlock code. Check your purchase email.');
+      }
+    })
+    .catch(function(){
+      alert('Could not reach the unlock service. Check your connection and try again.');
+    })
+    .finally(function(){btn.disabled=false;btn.textContent='Unlock';});
   });
 
   function buildDescription(topic,type,age,benefits,cfg){
