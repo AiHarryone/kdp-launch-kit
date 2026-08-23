@@ -185,13 +185,50 @@
 
   var used=parseInt(localStorage.getItem('kdpkit_used')||'0',10);
   var LIMIT=3;
-  // Unlock codes are validated server-side via a Cloudflare Worker proxy.
-  // No hardcoded codes live in this file anymore.
-  var UNLOCK_API='https://kdp-unlock.REPLACE_WORKER_SUBDOMAIN.workers.dev/unlock';
-  // Device id: stable per browser, used as the activation instance name so one
-  // code can't be activated from unlimited devices by clearing localStorage.
-  var INSTANCE_ID=localStorage.getItem('kdpkit_instance')||('inst-'+Math.random().toString(36).slice(2)+Date.now().toString(36));
-  localStorage.setItem('kdpkit_instance',INSTANCE_ID);
+  // ---- Unlock via per-order token (hash whitelist) ----
+  // Each paying customer gets a unique random token in a link like:
+  //   tool.html?unlock=<TOKEN>
+  // This file only stores the SHA-256 *hash* of each token, so reading the
+  // source does not reveal any usable unlock code. Generate new tokens with
+  // the "生成解锁链接.html" helper (or add hashes below manually).
+  // The hash list uses lower-case hex. Format: "sha256:lowercasehex".
+  var VALID_TOKEN_HASHES = [
+    // TEST token — replace with real order tokens before launch.
+    "sha256:1d683b012949121f67adfdb6c70d6b7c6d1a649b263de90074724a462cae0a38" // TEST-KDP-0001
+  ];
+  var TOKEN = (function(){
+    try{
+      var m=location.search.match(/[?&]unlock=([^&]+)/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }catch(e){return null;}
+  })();
+  function sha256hex(str){
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+      .then(function(buf){
+        var h=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        return 'sha256:'+h;
+      });
+  }
+  function tryTokenUnlock(){
+    if(!TOKEN) return;
+    var normalized=TOKEN.trim();
+    if(!normalized) return;
+    sha256hex(normalized).then(function(hash){
+      if(VALID_TOKEN_HASHES.indexOf(hash)!==-1){
+        localStorage.setItem('kdpkit_unlocked','1');
+        used=0;
+        showUnlockedBanner();
+      }
+    }).catch(function(){});
+  }
+  function showUnlockedBanner(){
+    var b=document.createElement('div');
+    b.style.cssText='background:#d6f2ff;color:#2c6d8f;padding:10px 16px;border-radius:10px;margin:14px 0;font-weight:bold;';
+    b.textContent='✔ Unlocked! Unlimited generations are now enabled for this browser.';
+    var wrap=document.querySelector('.wrap');
+    if(wrap) wrap.insertBefore(b, wrap.firstChild);
+  }
+  tryTokenUnlock();
 
   function showPaywall(){document.getElementById('paywall').style.display='flex';}
 
@@ -246,25 +283,19 @@
     if(!v){alert('Please enter your unlock code.');return;}
     var btn=this;
     btn.disabled=true;btn.textContent='Checking…';
-    fetch(UNLOCK_API,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({key:v,instanceName:INSTANCE_ID})
-    }).then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
-    .then(function(res){
-      if(res.ok && res.d.ok){
+    sha256hex(v).then(function(hash){
+      if(VALID_TOKEN_HASHES.indexOf(hash)!==-1){
         localStorage.setItem('kdpkit_unlocked','1');
         used=0;
         document.getElementById('paywall').style.display='none';
+        showUnlockedBanner();
         alert('Unlocked! Enjoy unlimited generations.');
       }else{
-        alert(res.d.error || 'Invalid unlock code. Check your purchase email.');
+        alert('Invalid unlock code. Check your purchase email.');
       }
-    })
-    .catch(function(){
-      alert('Could not reach the unlock service. Check your connection and try again.');
-    })
-    .finally(function(){btn.disabled=false;btn.textContent='Unlock';});
+    }).catch(function(){
+      alert('Could not verify code. Please try again.');
+    }).finally(function(){btn.disabled=false;btn.textContent='Unlock';});
   });
 
   function buildDescription(topic,type,age,benefits,cfg){
