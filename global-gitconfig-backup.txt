@@ -1,0 +1,9 @@
+safe.directory=*
+http.postbuffer=524288000
+http.lowspeedlimit=0
+http.lowspeedtime=999999
+http.version=HTTP/1.1
+core.compression=0
+url.https://gitclone.com/github.com/.insteadof=https://github.com/
+url.https://gitclone.com/raw.githubusercontent.com/.insteadof=https://raw.githubusercontent.com/
+credential.https://gitclone.com.provider=generic

@@ -186,39 +186,37 @@
 
   var used=parseInt(localStorage.getItem('kdpkit_used')||'0',10);
   var LIMIT=3;
-  // ---- Unlock via per-order token (hash whitelist) ----
-  // Each paying customer gets a unique random token in a link like:
-  //   tool.html?unlock=<TOKEN>
-  // This file only stores the SHA-256 *hash* of each token, so reading the
-  // source does not reveal any usable unlock code. Generate new tokens with
-  // the "生成解锁链接.html" helper (or add hashes below manually).
-  // The hash list uses lower-case hex. Format: "sha256:lowercasehex".
-  var VALID_TOKEN_HASHES = [
-    // TEST token — replace with real order tokens before launch.
-    "sha256:1d683b012949121f67adfdb6c70d6b7c6d1a649b263de90074724a462cae0a38" // TEST-KDP-0001
-  ];
-  var TOKEN = (function(){
-    try{
-      var m=location.search.match(/[?&]unlock=([^&]+)/);
-      return m ? decodeURIComponent(m[1]) : null;
-    }catch(e){return null;}
-  })();
-  function sha256hex(str){
-    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
-      .then(function(buf){
-        var h=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-        return 'sha256:'+h;
+  // ---- Unlock via backend (Cloudflare Worker) ----
+  // The unlock code is a Creem license key, validated server-side so no
+  // secrets ever ship in this file. Configure the backend URL below.
+  var UNLOCK_API = 'https://kdp-unlock-production.aiharryone.workers.dev'; // Cloudflare Worker backend
+  function unlockViaApi(code){
+    return fetch(UNLOCK_API + '/unlock', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ key: code })
+    }).then(function(r){return r.json().catch(function(){return {};});})
+      .then(function(data){
+        if(data.ok){
+          localStorage.setItem('kdpkit_unlocked','1');
+          if(data.instanceId) localStorage.setItem('kdpkit_instances', JSON.stringify([data.instanceId]));
+          used=0;
+          return true;
+        }
+        return false;
       });
   }
   function tryTokenUnlock(){
-    if(!TOKEN) return;
-    var normalized=TOKEN.trim();
-    if(!normalized) return;
-    sha256hex(normalized).then(function(hash){
-      if(VALID_TOKEN_HASHES.indexOf(hash)!==-1){
-        localStorage.setItem('kdpkit_unlocked','1');
-        used=0;
+    var m;
+    try{ m=location.search.match(/[?&]unlock=([^&]+)/); }catch(e){}
+    if(!m) return;
+    var token=decodeURIComponent(m[1]).trim();
+    if(!token) return;
+    unlockViaApi(token).then(function(ok){
+      if(ok){
         showUnlockedBanner();
+        // Clean the query param so the token isn't re-processed on refresh.
+        try{ history.replaceState({}, '', location.pathname + location.hash); }catch(e){}
       }
     }).catch(function(){});
   }
@@ -284,10 +282,8 @@
     if(!v){alert('Please enter your unlock code.');return;}
     var btn=this;
     btn.disabled=true;btn.textContent='Checking…';
-    sha256hex(v).then(function(hash){
-      if(VALID_TOKEN_HASHES.indexOf(hash)!==-1){
-        localStorage.setItem('kdpkit_unlocked','1');
-        used=0;
+    unlockViaApi(v).then(function(ok){
+      if(ok){
         document.getElementById('paywall').style.display='none';
         showUnlockedBanner();
         alert('Unlocked! Enjoy unlimited generations.');
