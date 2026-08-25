@@ -4,25 +4,49 @@
 <meta name="msvalidate.01" content="E62785F51D89A3BD3AFBB2BC2BB07BF9">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KDP Launch Kit – Generate Book Titles, Descriptions & Keywords in Seconds</title>
+<title>KDP Tools for Authors – Free Royalty Calculator, ISBN Converter & Launch Kit Generator</title>
+<meta name="description" content="Free tools for KDP authors: royalty calculator, ISBN converter, description HTML formatter, keyword character checker, and the Launch Kit generator for book titles, descriptions and keywords. No signup.">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:#eef9ff;color:#33556b;line-height:1.6;}
-  .wrap{max-width:860px;margin:0 auto;padding:0 20px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px;}
   header{background:linear-gradient(135deg,#9fd8ff,#d6f2ff);padding:28px 0;}
-  nav{display:flex;justify-content:space-between;align-items:center;}
+  nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
   .logo{font-weight:bold;font-size:20px;color:#2c6d8f;}
+  .logo a{color:#2c6d8f;text-decoration:none;}
+  .nav-links a{color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;}
+  .nav-links a:hover{color:#2c6d8f;}
   .btn{display:inline-block;background:#e07b4f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:30px;font-weight:bold;transition:.2s;border:none;cursor:pointer;}
   .btn:hover{background:#c9683f;}
   .btn.ghost{background:#fff;color:#3b7ea1;border:2px solid #7ec8e3;}
-  .hero{text-align:center;padding:50px 0 30px;}
-  .hero h1{font-size:38px;color:#2c6d8f;margin-bottom:12px;}
-  .hero p{font-size:18px;margin-bottom:24px;}
-  section{padding:36px 0;}
-  h2{color:#2c6d8f;margin-bottom:14px;font-size:26px;}
+  .btn.sm{padding:8px 18px;font-size:14px;}
+  .btn.green{background:#27ae60;}
+  .btn.green:hover{background:#1f9b52;}
+  .hero{text-align:center;padding:48px 0 26px;}
+  .hero h1{font-size:36px;color:#2c6d8f;margin-bottom:12px;}
+  .hero p{font-size:18px;margin-bottom:22px;max-width:640px;margin-left:auto;margin-right:auto;}
+  .hero .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  section{padding:34px 0;}
+  h2{color:#2c6d8f;margin-bottom:14px;font-size:26px;text-align:center;}
+  h2 .sub{display:block;font-size:15px;color:#7a9db1;font-weight:normal;margin-top:4px;}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
-  .card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 4px 14px rgba(80,140,170,.12);}
-  .card h3{color:#e07b4f;margin-bottom:6px;}
+  .card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 4px 14px rgba(80,140,170,.12);transition:.2s;}
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(80,140,170,.18);}
+  .card h3{color:#e07b4f;margin-bottom:6px;font-size:17px;}
+  .card p{font-size:14px;}
+  .card .ico{font-size:26px;display:block;margin-bottom:8px;}
+  .card a{text-decoration:none;color:inherit;display:block;}
+  .card .go{color:#3b7ea1;font-weight:bold;font-size:13px;margin-top:8px;display:block;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(80,140,170,.12);padding:20px;margin:0 0 10px;}
+  .stats .stat{text-align:center;}
+  .stats .num{font-size:28px;font-weight:bold;color:#2c6d8f;}
+  .stats .lbl{font-size:13px;color:#7a9db1;}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:6px;}
+  .step{background:#fff;border-radius:14px;padding:18px;box-shadow:0 4px 14px rgba(80,140,170,.12);position:relative;border-top:4px solid #7ec8e3;}
+  .step .n{position:absolute;top:-12px;left:16px;background:#e07b4f;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;}
+  .step h4{color:#2c6d8f;margin-bottom:4px;font-size:15px;}
+  .step p{font-size:13px;color:#5a7f96;}
+  .step a{color:#3b7ea1;font-weight:bold;text-decoration:none;}
   .pricing{background:#fff;border-radius:16px;box-shadow:0 6px 20px rgba(80,140,170,.15);padding:30px;text-align:center;max-width:420px;margin:0 auto;}
   .price{font-size:44px;color:#2c6d8f;font-weight:bold;}
   .price span{font-size:18px;color:#7a9db1;}
@@ -30,56 +54,99 @@
   .pricing li{padding:6px 0;border-bottom:1px dashed #dcecf4;}
   .faq p{margin-bottom:10px;background:#fff;border-radius:10px;padding:14px 18px;}
   .faq b{color:#2c6d8f;}
+  .faq .q{font-size:13px;color:#7a9db1;font-weight:normal;}
   footer{background:#d6f2ff;padding:22px 0;text-align:center;font-size:14px;color:#5a8fae;}
-  @media(max-width:600px){.hero h1{font-size:28px;}.btn{display:block;margin:8px 0;text-align:center;}}
+  footer a{color:#3b7ea1;}
+  @media(max-width:600px){.hero h1{font-size:26px;}.btn{display:block;margin:8px 0;text-align:center;}.nav-links a{display:inline-block;margin:4px 12px 4px 0;}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap nav">
-    <div class="logo"><a href="index.html" style="color:#2c6d8f;text-decoration:none;">KDP Launch Kit</a></div>
-    <div>
-      <a href="kdp-keyword-generator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Keyword Generator</a>
-      <a href="royalty-calculator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Royalty Calculator</a>
-      <a class="btn ghost" href="tool.html" style="margin-right:8px;">Try Free</a>
-      <a class="btn" href="https://www.creem.io/payment/prod_5W0dpkrCU5C8iS3uO6EdhW">Buy Now</a>
+    <div class="logo"><a href="index.html">KDP Launch Kit</a></div>
+    <div class="nav-links">
+      <a href="kdp-keyword-generator.html">Keyword Generator</a>
+      <a href="royalty-calculator.html">Royalty Calculator</a>
+      <a class="btn ghost sm" href="tool.html">Try Free</a>
+      <a class="btn sm" href="https://www.creem.io/payment/prod_5W0dpkrCU5C8iS3uO6EdhW">Buy Now</a>
     </div>
   </div>
 </header>
 
 <div class="wrap">
   <div class="hero">
-    <h1>Launch Your Next KDP Book in Minutes</h1>
-    <p>Generate proven book titles, subtitles, Amazon descriptions and 7 keywords — instantly.</p>
-    <a class="btn" href="tool.html">Try the Free Generator</a>
+    <h1>Free Tools for KDP Authors</h1>
+    <p>Price your book, format your description and launch with confidence. A full toolkit for self-publishers — free royalty calculator, ISBN converter, formatter and more.</p>
+    <div class="btn-row">
+      <a class="btn green" href="#tools">Browse Free Tools</a>
+      <a class="btn ghost" href="tool.html">Try the Launch Kit Generator</a>
+    </div>
   </div>
 
   <section>
-    <h2>What You Get</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">5</div><div class="lbl">Free tools</div></div>
+      <div class="stat"><div class="num">7</div><div class="lbl">KDP keyword slots</div></div>
+      <div class="stat"><div class="num">50</div><div class="lbl">Chars per keyword</div></div>
+      <div class="stat"><div class="num">$0</div><div class="lbl">Signup required</div></div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <h2>Your Free KDP Toolkit<span class="sub">Everything runs in your browser. No signup, no limits, no watermarks.</span></h2>
+    <div class="grid">
+      <div class="card"><a href="royalty-calculator.html">
+        <span class="ico">💰</span><h3>Royalty Calculator</h3>
+        <p>See exactly what you earn per book — ebook, paperback or hardcover, including printing costs and breakeven price.</p>
+        <span class="go">Open calculator →</span>
+      </a></div>
+      <div class="card"><a href="isbn-converter.html">
+        <span class="ico">🔢</span><h3>ISBN Converter</h3>
+        <p>Convert ISBN-10 to ISBN-13 and back, validate check digits — instantly, for any book.</p>
+        <span class="go">Convert an ISBN →</span>
+      </a></div>
+      <div class="card"><a href="description-html-formatter.html">
+        <span class="ico">✍️</span><h3>Description Formatter</h3>
+        <p>Turn plain text into Amazon-ready HTML with bold, bullets and line breaks. Live preview included.</p>
+        <span class="go">Format your description →</span>
+      </a></div>
+      <div class="card"><a href="keyword-character-checker.html">
+        <span class="ico">🔤</span><h3>Keyword Checker</h3>
+        <p>Keep your 7 keyword slots under Amazon's 50-character limit. Counts characters as you type.</p>
+        <span class="go">Check your keywords →</span>
+      </a></div>
+      <div class="card"><a href="kdp-keyword-generator.html">
+        <span class="ico">⚡</span><h3>Keyword Generator</h3>
+        <p>Free keyword ideas that get your book found on Amazon search — tailored to your niche.</p>
+        <span class="go">Generate keywords →</span>
+      </a></div>
+      <div class="card"><a href="book-title-generator.html">
+        <span class="ico">🎯</span><h3>Title Generator</h3>
+        <p>Free book title ideas and subtitle suggestions for children's, activity, fiction and non-fiction books.</p>
+        <span class="go">Get title ideas →</span>
+      </a></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From Idea to Published<span class="sub">The workflow every self-publisher goes through — we cover each step.</span></h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h4>Create</h4><p><a href="tool.html">Launch Kit Generator</a> — book titles, description &amp; 7 keywords in one click.</p></div>
+      <div class="step"><span class="n">2</span><h4>Price</h4><p><a href="royalty-calculator.html">Royalty Calculator</a> — find a price that maximizes profit, not just sales.</p></div>
+      <div class="step"><span class="n">3</span><h4>ISBN</h4><p><a href="isbn-converter.html">ISBN Converter</a> — get your ISBN-13 ready for wide distribution.</p></div>
+      <div class="step"><span class="n">4</span><h4>Format</h4><p><a href="description-html-formatter.html">Description Formatter</a> &amp; <a href="keyword-character-checker.html">Keyword Checker</a> — make your listing shine.</p></div>
+      <div class="step"><span class="n">5</span><h4>Publish</h4><p>Upload to KDP with your optimized listing ready to convert shoppers.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Launch Kit Generator<span class="sub">Your free tool generates ideas. The full generator turns one topic into a complete, publish-ready listing.</span></h2>
     <div class="grid">
       <div class="card"><h3>Title Ideas</h3><p>5 ready-to-use title ideas + subtitle suggestions for children's books, activity books, fiction and non-fiction.</p></div>
       <div class="card"><h3>Amazon Description</h3><p>A conversion-focused description written the way Amazon shoppers read: value first, details second.</p></div>
       <div class="card"><h3>7 Keywords</h3><p>Amazon allows 7 keywords — we generate all 7 for your niche, ready to paste into KDP.</p></div>
       <div class="card"><h3>Category Hints</h3><p>Suggested Amazon categories to help your book get found in the right shelves.</p></div>
     </div>
-  </section>
-
-  <section>
-    <h2>Free Tools</h2>
-    <div class="grid">
-      <div class="card"><h3><a href="royalty-calculator.html" style="color:#e07b4f;text-decoration:none;">Royalty Calculator</a></h3><p>See exactly what you earn per book — ebook, paperback or hardcover. Free, no signup.</p></div>
-      <div class="card"><h3><a href="isbn-converter.html" style="color:#e07b4f;text-decoration:none;">ISBN Converter</a></h3><p>Convert ISBN-10 to ISBN-13 and back, validate check digits — instantly.</p></div>
-      <div class="card"><h3><a href="description-html-formatter.html" style="color:#e07b4f;text-decoration:none;">Description Formatter</a></h3><p>Turn plain text into Amazon-ready HTML with bold, bullets and line breaks.</p></div>
-      <div class="card"><h3><a href="keyword-character-checker.html" style="color:#e07b4f;text-decoration:none;">Keyword Checker</a></h3><p>Check your 7 keyword slots stay under Amazon's 50-character limit.</p></div>
-      <div class="card"><h3><a href="kdp-keyword-generator.html" style="color:#e07b4f;text-decoration:none;">Keyword Generator</a></h3><p>Generate Amazon-ready keywords that get your book found — free to try.</p></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>How It Works</h2>
-    <p style="margin-bottom:12px;">1. Type your book topic (e.g. "unicorn", "number tracing", "space exploration").<br>
-    2. Choose your book type and audience.<br>
-    3. Copy your generated title, description and keywords straight into KDP.</p>
   </section>
 
   <section>
@@ -98,6 +165,7 @@
 
   <section class="faq">
     <h2>FAQ</h2>
+    <p><b>Are the tools really free?</b> Yes — all the tools above are completely free, no signup, no watermarks, no limits. <span class="q">The Launch Kit Generator is free for 3 uses; unlimited access is a one-time $9.99.</span></p>
     <p><b>Do I need to know how to write?</b> No — the generator does the writing. You bring the topic.</p>
     <p><b>Is this a subscription?</b> No. Pay once, use forever.</p>
     <p><b>Can I use the generated text for my books?</b> Yes, everything you generate is yours to use.</p>
@@ -105,7 +173,7 @@
 </div>
 
 <footer>
-  Made for indie authors who believe every book deserves a good launch. Questions? Contact: Ai_harryone@outlook.com · <a href="royalty-calculator.html">Royalty Calculator</a> · <a href="book-title-generator.html">Title Generator</a> · <a href="amazon-description-generator.html">Description Generator</a> · <a href="childrens-book-title-ideas.html">Kids' Title Ideas</a> · <a href="kdp-keywords-guide.html">Keywords Guide</a> · <a href="coloring-book-title-generator.html">Coloring Titles</a> · <a href="activity-book-ideas.html">Activity Ideas</a> · <a href="low-content-book-ideas.html">Low-Content</a> · <a href="kdp-title-ideas.html">KDP Titles</a> · <a href="amazon-book-keywords.html">Book Keywords</a> · <a href="journal-title-ideas.html">Journal Titles</a> · <a href="planner-title-ideas.html">Planner Titles</a> · <a href="book-description-examples.html">Description Examples</a> · <a href="kdp-niches-guide.html">Niches Guide</a> · <a href="gratitude-journal-title-ideas.html">Gratitude Journals</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+  Made for indie authors who believe every book deserves a good launch. Questions? Contact: Ai_harryone@outlook.com · <a href="royalty-calculator.html">Royalty Calculator</a> · <a href="isbn-converter.html">ISBN Converter</a> · <a href="description-html-formatter.html">Description Formatter</a> · <a href="keyword-character-checker.html">Keyword Checker</a> · <a href="book-title-generator.html">Title Generator</a> · <a href="amazon-description-generator.html">Description Generator</a> · <a href="childrens-book-title-ideas.html">Kids' Title Ideas</a> · <a href="kdp-keywords-guide.html">Keywords Guide</a> · <a href="coloring-book-title-generator.html">Coloring Titles</a> · <a href="activity-book-ideas.html">Activity Ideas</a> · <a href="low-content-book-ideas.html">Low-Content</a> · <a href="kdp-title-ideas.html">KDP Titles</a> · <a href="amazon-book-keywords.html">Book Keywords</a> · <a href="journal-title-ideas.html">Journal Titles</a> · <a href="planner-title-ideas.html">Planner Titles</a> · <a href="book-description-examples.html">Description Examples</a> · <a href="kdp-niches-guide.html">Niches Guide</a> · <a href="gratitude-journal-title-ideas.html">Gratitude Journals</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
 </footer>
 </body>
 </html>
