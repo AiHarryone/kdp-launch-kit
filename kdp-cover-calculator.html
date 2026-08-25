@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="msvalidate.01" content="E62785F51D89A3BD3AFBB2BC2BB07BF9">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP Cover Size Calculator – Get Exact Kindle & Paperback Cover Dimensions (Free)</title>
+<meta name="description" content="Free KDP cover size calculator. Get exact Kindle ebook cover dimensions (1600×2560), paperback and hardcover full-wrap sizes with spine width, bleed and 300 DPI pixels. No signup.">
+<link rel="canonical" href="https://aiharryone.github.io/kdp-launch-kit/kdp-cover-calculator.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What size should a Kindle ebook cover be?","acceptedAnswer":{"@type":"Answer","text":"The ideal Kindle cover size is 1600 × 2560 pixels, a 1.6:1 height-to-width ratio. The minimum is 1000 pixels on the longest side, but 1600 × 2560 avoids the low-quality flag."}},
+{"@type":"Question","name":"How do I calculate a paperback cover size?","acceptedAnswer":{"@type":"Answer","text":"Full wrap width = (trim width × 2) + spine width + (bleed × 2). Height = trim height + (bleed × 2). Spine width = page count × paper thickness (white 0.002252\"/page, cream 0.0025\"/page)."}},
+{"@type":"Question","name":"What DPI does KDP require for print covers?","acceptedAnswer":{"@type":"Answer","text":"300 DPI minimum at native resolution. For a 6\"×9\" book the full cover should be roughly 3844 × 2775 pixels at 300 DPI."}},
+{"@type":"Question","name":"Is this cover calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no signup, runs entirely in your browser. Use the official KDP Cover Calculator at kdp.amazon.com to download exact templates."}}
+]}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:#eef9ff;color:#33556b;line-height:1.6;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px;}
+  header{background:linear-gradient(135deg,#9fd8ff,#d6f2ff);padding:28px 0;}
+  nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .logo{font-weight:bold;font-size:20px;color:#2c6d8f;}
+  .logo a{color:#2c6d8f;text-decoration:none;}
+  .btn{display:inline-block;background:#e07b4f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:30px;font-weight:bold;transition:.2s;border:none;cursor:pointer;}
+  .btn:hover{background:#c9683f;}
+  .btn.ghost{background:#fff;color:#3b7ea1;border:2px solid #7ec8e3;}
+  .btn.green{background:#27ae60;}
+  .btn.green:hover{background:#1f9b52;}
+  .btn.sm{padding:8px 18px;font-size:14px;margin-top:6px;}
+  .hero{text-align:center;padding:44px 0 24px;}
+  .hero h1{font-size:32px;color:#2c6d8f;margin-bottom:12px;}
+  .hero p{font-size:18px;margin-bottom:20px;}
+  section{padding:26px 0;}
+  h2{color:#2c6d8f;margin-bottom:14px;font-size:24px;}
+  .calc{background:#fff;border-radius:16px;padding:26px;box-shadow:0 4px 14px rgba(80,140,170,.12);}
+  .tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .tab{flex:1;min-width:130px;background:#f4fbff;border:2px solid #d6e8f4;border-radius:12px;padding:12px;text-align:center;cursor:pointer;font-weight:bold;color:#3b7ea1;transition:.15s;}
+  .tab:hover{border-color:#7ec8e3;}
+  .tab.active{background:#e07b4f;color:#fff;border-color:#e07b4f;}
+  label{display:block;font-weight:bold;margin:14px 0 5px;color:#2c6d8f;}
+  input[type=number],select{width:100%;padding:11px;border:2px solid #bfe0f0;border-radius:10px;font-size:15px;background:#fff;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row > div{flex:1;min-width:160px;}
+  .hint{font-size:12px;color:#7a9db1;margin-top:3px;}
+  .results{margin-top:20px;}
+  .res{display:flex;justify-content:space-between;align-items:center;background:#f4fbff;border-radius:12px;padding:14px 18px;margin-bottom:10px;}
+  .res .lbl{font-weight:bold;color:#2c6d8f;}
+  .res .val{font-size:22px;font-weight:bold;color:#e07b4f;text-align:right;}
+  .res .sub{font-size:12px;color:#7a9db1;display:block;font-weight:normal;}
+  .res.highlight{background:#eafaf1;border:2px solid #b8e6c8;}
+  .res.highlight .val{color:#27ae60;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(80,140,170,.08);font-size:14px;}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef5fa;}
+  th{background:#d6f2ff;color:#2c6d8f;}
+  tr:last-child td{border-bottom:none;}
+  .note{font-size:13px;color:#7a9db1;margin-top:14px;}
+  .faq p{margin-bottom:10px;background:#fff;border-radius:10px;padding:14px 18px;}
+  .faq b{color:#2c6d8f;}
+  footer{background:#d6f2ff;padding:22px 0;text-align:center;font-size:14px;color:#5a8fae;}
+  footer a{color:#3b7ea1;}
+  .cta{margin-top:40px;}
+  .cta-box{background:linear-gradient(135deg,#eaf4ff,#d6f2ff);border:2px solid #bfe0f0;border-radius:16px;padding:28px 30px;text-align:center;}
+  .cta-box h3{color:#2c6d8f;font-size:22px;margin-bottom:8px;}
+  .cta-box p{color:#5a7f96;font-size:15px;margin-bottom:18px;max-width:560px;margin-left:auto;margin-right:auto;}
+  .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .cta-btns .btn{text-decoration:none;font-size:15px;}
+  .related{margin-top:40px;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(80,140,170,.12);padding:24px;}
+  .related h2{color:#2c6d8f;margin-bottom:12px;font-size:20px;}
+  .related a{display:inline-block;background:#f4fbff;color:#3b7ea1;border:1px solid #bfe0f0;border-radius:20px;padding:6px 14px;margin:4px 6px 0 0;text-decoration:none;font-size:14px;font-weight:bold;}
+  .related a:hover{background:#d6f2ff;}
+  @media(max-width:600px){.hero h1{font-size:26px;}.btn{display:block;margin:8px 0;text-align:center;}.tab{min-width:100%;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><a href="index.html">KDP Launch Kit</a></div>
+    <div>
+      <a href="kdp-keyword-generator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Keyword Generator</a>
+      <a href="royalty-calculator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Royalty Calculator</a>
+      <a class="btn ghost" href="tool.html" style="margin-right:8px;">Try Free</a>
+      <a class="btn" href="tool.html">Launch Kit Generator</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>KDP Cover Size Calculator</h1>
+    <p>Get exact cover dimensions for Kindle ebooks, paperbacks and hardcovers — free, no signup.</p>
+  </div>
+
+  <section>
+    <div class="calc">
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-format="kindle">Kindle eBook</div>
+        <div class="tab" data-format="paperback">Paperback</div>
+        <div class="tab" data-format="hardcover">Hardcover</div>
+      </div>
+
+      <div id="kindleFields">
+        <div class="row">
+          <div>
+            <label for="kindleW">Kindle cover ratio</label>
+            <select id="kindleW">
+              <option value="1.6">1.6 : 1 (ideal, 1600×2560)</option>
+              <option value="1.29">1.29 : 1 (min accepted)</option>
+            </select>
+          </div>
+          <div>
+            <label for="kindlePx">Width (px)</label>
+            <input type="number" id="kindlePx" value="1600" min="625" step="50">
+            <div class="hint">Ideal width 1600px, min 1000px longest side.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="printFields" style="display:none;">
+        <div class="row">
+          <div>
+            <label for="trimW">Trim width (inches)</label>
+            <select id="trimW">
+              <option value="5.5">5.5" (digest)</option>
+              <option value="6" selected>6" (trade)</option>
+              <option value="6.14">6.14" (US letter ~A5)</option>
+              <option value="8.5">8.5" (large)</option>
+            </select>
+          </div>
+          <div>
+            <label for="trimH">Trim height (inches)</label>
+            <select id="trimH">
+              <option value="8.5">8.5" (digest)</option>
+              <option value="9" selected>9" (trade)</option>
+              <option value="9.21">9.21"</option>
+              <option value="11">11" (large)</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="pages">Page count</label>
+            <input type="number" id="pages" value="250" min="24" step="1">
+          </div>
+          <div>
+            <label for="paper">Paper type</label>
+            <select id="paper">
+              <option value="white" selected>White (0.002252"/page)</option>
+              <option value="cream">Cream (0.0025"/page)</option>
+            </select>
+          </div>
+        </div>
+        <div class="hint" id="printHint">Full-wrap cover = front + spine + back. Bleed 0.125", 300 DPI required.</div>
+      </div>
+
+      <button class="btn green" id="calcBtn" style="margin-top:20px;">Calculate Cover Size</button>
+
+      <div class="results" id="results" style="display:none;">
+        <div class="res highlight">
+          <div><span class="lbl" id="mainLbl">Full cover size</span></div>
+          <div class="val" id="mainVal">—</div>
+        </div>
+        <div class="res">
+          <div><span class="lbl">At 300 DPI (pixels)</span></div>
+          <div class="val" id="pxVal">—</div>
+        </div>
+        <div class="res" id="spineRow" style="display:none;">
+          <div><span class="lbl">Spine width</span><span class="sub">Book spine for the full wrap</span></div>
+          <div class="val" id="spineVal">—</div>
+        </div>
+        <div class="note" id="tipNote"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Common KDP Trim Sizes</h2>
+    <table>
+      <tr><th>Format</th><th>Trim size</th><th>Typical use</th></tr>
+      <tr><td>5.5" × 8.5"</td><td>Digest</td><td>Novels, memoirs</td></tr>
+      <tr><td>6" × 9"</td><td>Trade</td><td>The industry standard for non-fiction</td></tr>
+      <tr><td>6.14" × 9.21"</td><td>A5</td><td>International standard</td></tr>
+      <tr><td>7" × 10"</td><td>Large format</td><td>Workbooks, textbooks</td></tr>
+      <tr><td>8.5" × 11"</td><td>Large</td><td>Planners, activity books, manuals</td></tr>
+    </table>
+  </section>
+
+  <section class="faq">
+    <h2>KDP Cover Requirements</h2>
+    <p><b>Kindle ebook:</b> 1600 × 2560 px ideal (1.6:1). Min 1000px longest side. JPG or TIFF, RGB, max 50 MB.</p>
+    <p><b>Paperback/hardcover:</b> 300 DPI, native resolution, 0.125" bleed, CMYK preferred.</p>
+    <p><b>Spine width formula:</b> page count × paper thickness. White 0.002252"/page, cream 0.0025"/page.</p>
+    <p><b>Safe margin:</b> keep text 0.5" from trim (paperback) or 0.625" (hardcover).</p>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <p><b>Why is my Kindle cover rejected?</b> Most common: too small (under 1000px), square 1:1 ratio, or wrong format. Use 1600 × 2560.</p>
+    <p><b>Do I need bleed on a Kindle cover?</b> No — bleed is only for print. Kindle is front-cover-only, exact pixels.</p>
+    <p><b>Is this calculator free?</b> Yes — completely free, no signup, runs in your browser. Always confirm with the official KDP Cover Calculator before ordering a print proof.</p>
+  </section>
+
+  <section class="cta">
+    <div class="cta-box">
+      <h3>Designed your cover? Now create the perfect listing.</h3>
+      <p>Turn one book topic into 5 titles, a description and all 7 keywords with the Launch Kit Generator.</p>
+      <div class="cta-btns">
+        <a class="btn green" href="tool.html">Try the Free Generator</a>
+        <a class="btn" href="https://www.creem.io/payment/prod_5W0dpkrCU5C8iS3uO6EdhW">Get Unlimited – $9.99</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="related">
+    <h2>More Free KDP Tools</h2>
+    <a href="royalty-calculator.html">Royalty Calculator</a>
+    <a href="isbn-converter.html">ISBN Converter</a>
+    <a href="description-html-formatter.html">Description Formatter</a>
+    <a href="keyword-character-checker.html">Keyword Checker</a>
+    <a href="tool.html">Launch Kit Generator</a>
+    <a href="kdp-keyword-generator.html">Keyword Generator</a>
+    <a href="book-title-generator.html">Book Title Generator</a>
+  </div>
+</div>
+
+<footer>
+  Made for indie authors who believe every book deserves a good launch. Questions? Contact: Ai_harryone@outlook.com · <a href="kdp-cover-calculator.html">Cover Calculator</a> · <a href="royalty-calculator.html">Royalty Calculator</a> · <a href="isbn-converter.html">ISBN Converter</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+</footer>
+
+<script>
+(function(){
+  var format = 'kindle';
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      format = tab.getAttribute('data-format');
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('kindleFields').style.display = format === 'kindle' ? 'block' : 'none';
+      document.getElementById('printFields').style.display = (format === 'kindle') ? 'none' : 'block';
+      calc();
+    });
+  });
+
+  function money(n){ return n.toFixed(3); }
+
+  function calc(){
+    var res = document.getElementById('results');
+    var mainVal = document.getElementById('mainVal');
+    var pxVal = document.getElementById('pxVal');
+    var spineRow = document.getElementById('spineRow');
+    var spineVal = document.getElementById('spineVal');
+    var tip = document.getElementById('tipNote');
+
+    if(format === 'kindle'){
+      var ratio = parseFloat(document.getElementById('kindleW').value) || 1.6;
+      var w = parseInt(document.getElementById('kindlePx').value, 10) || 1600;
+      var h = Math.round(w * ratio);
+      document.getElementById('mainLbl').textContent = 'Cover size (px)';
+      mainVal.textContent = w + ' × ' + h + ' px';
+      pxVal.textContent = 'Ratio ' + ratio + ':1';
+      spineRow.style.display = 'none';
+      tip.textContent = 'Tip: Kindle covers are front-only, no bleed. Use JPG/TIFF, RGB, under 50 MB. 1600×2560 avoids the low-quality flag.';
+    } else {
+      var trimW = parseFloat(document.getElementById('trimW').value) || 6;
+      var trimH = parseFloat(document.getElementById('trimH').value) || 9;
+      var pages = parseInt(document.getElementById('pages').value, 10) || 100;
+      var paper = document.getElementById('paper').value;
+      var ppi = paper === 'white' ? 0.002252 : 0.0025;
+      var spine = pages * ppi;
+      var bleed = 0.125;
+      var W = trimW*2 + spine + bleed*2;
+      var H = trimH + bleed*2;
+      document.getElementById('mainLbl').textContent = 'Full wrap cover (inches)';
+      mainVal.textContent = W.toFixed(3) + '" × ' + H.toFixed(3) + '"';
+      pxVal.textContent = Math.round(W*300) + ' × ' + Math.round(H*300) + ' px @300 DPI';
+      spineRow.style.display = 'flex';
+      spineVal.textContent = spine.toFixed(3) + '" (' + pages + ' pages × ' + ppi + '")';
+      tip.textContent = format === 'paperback'
+        ? 'Tip: full wrap = back + spine + front. Keep text 0.5" from trim. 300 DPI minimum, native resolution.'
+        : 'Tip: hardcovers need 0.625" safe margin and a clear 0.4" hinge zone along inner edges.';
+    }
+    res.style.display = 'block';
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calc);
+  ['kindleW','kindlePx','trimW','trimH','pages','paper'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
