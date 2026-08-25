@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="msvalidate.01" content="E62785F51D89A3BD3AFBB2BC2BB07BF9">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP Royalty Calculator – See Exactly What You Earn on Every Book</title>
+<meta name="description" content="Free KDP royalty calculator. Estimate your royalty per sale for Kindle ebooks (70% and 35% plans), paperbacks and hardcovers — including delivery fees, printing costs and your breakeven price. No signup, works instantly in your browser.">
+<link rel="canonical" href="https://aiharryone.github.io/kdp-launch-kit/royalty-calculator.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How is KDP royalty calculated for ebooks?","acceptedAnswer":{"@type":"Answer","text":"Ebooks priced between $2.99 and $9.99 earn 70% of list price minus a delivery fee of about $0.15 per MB. Outside that range you get 35% with no delivery fee."}},
+{"@type":"Question","name":"How do printing costs affect paperback royalties?","acceptedAnswer":{"@type":"Answer","text":"Paperback royalty is list price times the royalty rate (60% at $9.99+ list price, 50% below) minus Amazon's printing cost, which depends on page count and ink type."}},
+{"@type":"Question","name":"What is a breakeven price?","acceptedAnswer":{"@type":"Answer","text":"The list price where your royalty covers Amazon's printing cost. Below it you lose money on every sale. For paperbacks it's roughly printing cost divided by royalty rate."}},
+{"@type":"Question","name":"Is this calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no signup and no limits. It runs entirely in your browser."}}
+]}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:#eef9ff;color:#33556b;line-height:1.6;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px;}
+  header{background:linear-gradient(135deg,#9fd8ff,#d6f2ff);padding:28px 0;}
+  nav{display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-weight:bold;font-size:20px;color:#2c6d8f;}
+  .logo a{color:#2c6d8f;text-decoration:none;}
+  .btn{display:inline-block;background:#e07b4f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:30px;font-weight:bold;transition:.2s;border:none;cursor:pointer;}
+  .btn:hover{background:#c9683f;}
+  .btn.ghost{background:#fff;color:#3b7ea1;border:2px solid #7ec8e3;}
+  .btn.green{background:#27ae60;}
+  .btn.green:hover{background:#1f9b52;}
+  .hero{text-align:center;padding:44px 0 24px;}
+  .hero h1{font-size:32px;color:#2c6d8f;margin-bottom:12px;}
+  .hero p{font-size:18px;margin-bottom:20px;}
+  section{padding:26px 0;}
+  h2{color:#2c6d8f;margin-bottom:14px;font-size:24px;}
+  .calc{background:#fff;border-radius:16px;padding:26px;box-shadow:0 4px 14px rgba(80,140,170,.12);}
+  .tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .tab{flex:1;min-width:130px;background:#f4fbff;border:2px solid #d6e8f4;border-radius:12px;padding:12px;text-align:center;cursor:pointer;font-weight:bold;color:#3b7ea1;transition:.15s;}
+  .tab:hover{border-color:#7ec8e3;}
+  .tab.active{background:#e07b4f;color:#fff;border-color:#e07b4f;}
+  label{display:block;font-weight:bold;margin:14px 0 5px;color:#2c6d8f;}
+  input[type=number],select{width:100%;padding:11px;border:2px solid #bfe0f0;border-radius:10px;font-size:15px;background:#fff;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row > div{flex:1;min-width:170px;}
+  .hint{font-size:12px;color:#7a9db1;margin-top:3px;}
+  .results{margin-top:20px;}
+  .res{display:flex;justify-content:space-between;align-items:center;background:#f4fbff;border-radius:12px;padding:14px 18px;margin-bottom:10px;}
+  .res .lbl{font-weight:bold;color:#2c6d8f;}
+  .res .val{font-size:22px;font-weight:bold;color:#e07b4f;}
+  .res .sub{font-size:12px;color:#7a9db1;display:block;}
+  .res.highlight{background:#eafaf1;border:2px solid #b8e6c8;}
+  .res.highlight .val{color:#27ae60;}
+  .breakdown{background:#f4fbff;border-radius:12px;padding:16px 18px;font-size:14px;color:#5a7f96;margin-top:8px;}
+  .breakdown b{color:#2c6d8f;}
+  .note{font-size:13px;color:#7a9db1;margin-top:14px;}
+  .faq p{margin-bottom:10px;background:#fff;border-radius:10px;padding:14px 18px;}
+  .faq b{color:#2c6d8f;}
+  footer{background:#d6f2ff;padding:22px 0;text-align:center;font-size:14px;color:#5a8fae;}
+  footer a{color:#3b7ea1;}
+  .related{margin-top:40px;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(80,140,170,.12);padding:24px;}
+  .related h2{color:#2c6d8f;margin-bottom:12px;font-size:20px;}
+  .related a{display:inline-block;background:#f4fbff;color:#3b7ea1;border:1px solid #bfe0f0;border-radius:20px;padding:6px 14px;margin:4px 6px 0 0;text-decoration:none;font-size:14px;font-weight:bold;}
+  .related a:hover{background:#d6f2ff;}
+  @media(max-width:600px){.hero h1{font-size:26px;}.btn{display:block;margin:8px 0;text-align:center;}.tab{min-width:100%;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><a href="index.html">KDP Launch Kit</a></div>
+    <div>
+      <a href="kdp-keyword-generator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Keyword Generator</a>
+      <a class="btn ghost" href="royalty-calculator.html" style="margin-right:8px;">Royalty Calculator</a>
+      <a class="btn" href="tool.html">Launch Kit Generator</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>KDP Royalty Calculator</h1>
+    <p>See exactly what you earn on every book — ebook, paperback or hardcover. Free, no signup.</p>
+  </div>
+
+  <section>
+    <div class="calc">
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-format="ebook">Kindle eBook</div>
+        <div class="tab" data-format="paperback">Paperback</div>
+        <div class="tab" data-format="hardcover">Hardcover</div>
+      </div>
+
+      <div id="ebookFields">
+        <div class="row">
+          <div>
+            <label for="ebPrice">List price ($)</label>
+            <input type="number" id="ebPrice" value="4.99" min="0" step="0.01">
+          </div>
+          <div>
+            <label for="ebFileSize">File size (MB)</label>
+            <input type="number" id="ebFileSize" value="3" min="0" step="0.1">
+            <div class="hint">Mobi/ebook file size. Typical: 2–5 MB.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="printFields" style="display:none;">
+        <div class="row">
+          <div>
+            <label for="prPrice">List price ($)</label>
+            <input type="number" id="prPrice" value="14.99" min="0" step="0.01">
+          </div>
+          <div>
+            <label for="prPages">Page count</label>
+            <input type="number" id="prPages" value="250" min="24" step="1">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="prInk">Interior ink</label>
+            <select id="prInk">
+              <option value="bw">Black &amp; white</option>
+              <option value="stdcolor">Standard colour</option>
+              <option value="premcolor">Premium colour</option>
+            </select>
+          </div>
+          <div>
+            <label for="prTrim">Marketplace</label>
+            <select id="prTrim">
+              <option value="us">Amazon US</option>
+              <option value="eu">Amazon EU / UK</option>
+            </select>
+          </div>
+        </div>
+        <div class="hint" id="printHint">Printing cost is based on Amazon's current US rates (page count + ink type).</div>
+      </div>
+
+      <button class="btn green" id="calcBtn" style="margin-top:20px;">Calculate Royalty</button>
+
+      <div class="results" id="results" style="display:none;">
+        <div class="res highlight">
+          <div><span class="lbl">Royalty per sale</span><span class="sub" id="royaltySub"></span></div>
+          <div class="val" id="royaltyVal">$0.00</div>
+        </div>
+        <div class="res">
+          <div><span class="lbl">Your % of price</span></div>
+          <div class="val" id="pctVal">—</div>
+        </div>
+        <div class="breakdown" id="breakdown"></div>
+        <div class="res">
+          <div><span class="lbl">Breakeven price</span><span class="sub">Min list price before you lose money</span></div>
+          <div class="val" id="breakevenVal">—</div>
+        </div>
+        <div class="note">Royalties are estimates. Actual values vary by marketplace, VAT, trim size and Amazon's current rates. Check KDP's pricing page before you publish.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>How KDP Royalty Works</h2>
+    <p><b>Kindle ebooks:</b> $2.99–$9.99 = 70% minus ~$0.15/MB delivery fee. Outside that range = 35%, no delivery fee.</p>
+    <p><b>Paperbacks:</b> 60% at $9.99+ list price, 50% below, minus printing cost (page count + ink).</p>
+    <p><b>Hardcovers:</b> 60% minus higher case-binding printing cost. Minimum 75 pages.</p>
+    <p><b>Expanded Distribution:</b> Non-Amazon retailers pay 40% on print — always check your plan.</p>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <p><b>Is the calculator free?</b> Yes — completely free, no signup, no limits. It runs entirely in your browser.</p>
+    <p><b>Why is my paperback royalty so low?</b> Printing cost eats into it. A 250-page black &amp; white paperback at $14.99 nets about $4.99. Keep page counts lean to protect margin.</p>
+    <p><b>What's a good ebook price?</b> $2.99–$9.99 gets you the 70% plan. Below $2.99 you drop to 35%.</p>
+    <p><b>Do delivery fees matter?</b> Yes — $0.15/MB. A 10 MB image-heavy book loses $1.50 per sale. Compress images.</p>
+  </section>
+
+  <div class="related">
+    <h2>More Free KDP Tools</h2>
+    <a href="tool.html">Launch Kit Generator</a>
+    <a href="kdp-keyword-generator.html">Keyword Generator</a>
+    <a href="book-title-generator.html">Book Title Generator</a>
+    <a href="amazon-description-generator.html">Description Generator</a>
+    <a href="kdp-keywords-guide.html">Keywords Guide</a>
+    <a href="kdp-niches-guide.html">Niches Guide</a>
+    <a href="book-subtitle-ideas.html">Subtitle Ideas</a>
+    <a href="kdp-title-ideas.html">KDP Title Ideas</a>
+  </div>
+</div>
+
+<footer>
+  Made for indie authors who believe every book deserves a good launch. Questions? Contact: Ai_harryone@outlook.com · <a href="royalty-calculator.html">Royalty Calculator</a> · <a href="book-title-generator.html">Title Generator</a> · <a href="amazon-description-generator.html">Description Generator</a> · <a href="kdp-keywords-guide.html">Keywords Guide</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+</footer>
+
+<script>
+(function(){
+  // ---------- KDP royalty math (Amazon US rates) ----------
+  function money(n){ return '$' + n.toFixed(2); }
+
+  function deliveryFee(mb){
+    // ~$0.15 per MB on Amazon.com, minimum ~$0.01
+    return Math.max(0.01, mb * 0.15);
+  }
+
+  function ebookRoyalty(price, fileSizeMb){
+    var delivery = deliveryFee(fileSizeMb);
+    if(price >= 2.99 && price <= 9.99){
+      // 70% plan, minus delivery fee
+      var r = price * 0.70 - delivery;
+      return { royalty: Math.max(0, r), rate: '70%', note: '70% plan (list price $2.99–$9.99)' };
+    }
+    // 35% plan, no delivery fee
+    return { royalty: price * 0.35, rate: '35%', note: '35% plan (below $2.99 or above $9.99)' };
+  }
+
+  // Printing cost tables (Amazon US, April 2026 figures)
+  function bwPrintCost(pages){
+    if(pages <= 108) return 2.30;
+    if(pages <= 828) return 1.00 + pages * 0.012;
+    return 1.00 + 828 * 0.012 + (pages - 828) * 0.012; // extrapolate
+  }
+  function stdColorCost(pages){
+    return 1.00 + pages * 0.0255;
+  }
+  function premColorCost(pages){
+    if(pages <= 40) return 3.60;
+    return 1.00 + pages * 0.065;
+  }
+
+  function printCost(pages, ink){
+    if(ink === 'bw') return bwPrintCost(pages);
+    if(ink === 'stdcolor') return stdColorCost(pages);
+    return premColorCost(pages);
+  }
+
+  // Hardcover printing cost (US regular trim)
+  function hcPrintCost(pages, ink){
+    if(pages < 75) pages = 75; // KDP minimum
+    if(ink === 'bw'){
+      if(pages <= 108) return 6.80;
+      return 5.65 + pages * 0.012;
+    }
+    // premium colour
+    return 5.65 + pages * 0.065;
+  }
+
+  function printRoyalty(price, pages, ink, format){
+    var cost = format === 'hardcover' ? hcPrintCost(pages, ink) : printCost(pages, ink);
+    var rate = price >= 9.99 ? 0.60 : 0.50;
+    var r = price * rate - cost;
+    return { royalty: Math.max(0, r), cost: cost, rate: rate };
+  }
+
+  // ---------- UI ----------
+  var format = 'ebook';
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      format = tab.getAttribute('data-format');
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('ebookFields').style.display = format === 'ebook' ? 'block' : 'none';
+      document.getElementById('printFields').style.display = (format === 'ebook') ? 'none' : 'block';
+      document.getElementById('printHint').textContent = format === 'hardcover'
+        ? 'Hardcover printing cost is higher (case binding). Minimum 75 pages.'
+        : 'Printing cost is based on Amazon\'s current US rates (page count + ink type).';
+      calc();
+    });
+  });
+
+  function calc(){
+    var res = document.getElementById('results');
+    var royalty, sub, breakdown, breakeven;
+
+    if(format === 'ebook'){
+      var price = parseFloat(document.getElementById('ebPrice').value) || 0;
+      var mb = parseFloat(document.getElementById('ebFileSize').value) || 0;
+      var out = ebookRoyalty(price, mb);
+      royalty = out.royalty;
+      sub = out.note;
+      breakdown = 'List price <b>' + money(price) + '</b> × ' + out.rate + ' = <b>' + money(price * (out.rate==='70%'?0.70:0.35)) + '</b>';
+      if(out.rate === '70%'){
+        breakdown += ' − delivery fee <b>' + money(deliveryFee(mb)) + '</b> (≈' + mb + ' MB × $0.15)';
+      } else {
+        breakdown += ' (no delivery fee on 35% plan)';
+      }
+      // breakeven: lowest price that keeps you above zero
+      if(out.rate === '70%'){
+        var be = deliveryFee(mb) / 0.70;
+        breakeven = money(Math.max(0.99, be));
+      } else {
+        breakeven = money(0.99);
+      }
+    } else {
+      var p = parseFloat(document.getElementById('prPrice').value) || 0;
+      var pages = parseInt(document.getElementById('prPages').value, 10) || 0;
+      var ink = document.getElementById('prInk').value;
+      var out2 = printRoyalty(p, pages, ink, format);
+      royalty = out2.royalty;
+      sub = format === 'paperback' ? 'Paperback: ' + Math.round(out2.rate*100) + '% rate minus printing cost' : 'Hardcover: 60% rate minus printing cost';
+      breakdown = 'List price <b>' + money(p) + '</b> × ' + Math.round(out2.rate*100) + '% = <b>' + money(p * out2.rate) + '</b> − printing cost <b>' + money(out2.cost) + '</b> (' + pages + ' pages)';
+      breakeven = money(out2.cost / out2.rate);
+    }
+
+    document.getElementById('royaltyVal').textContent = money(royalty);
+    document.getElementById('royaltySub').textContent = sub;
+    document.getElementById('pctVal').textContent = Math.round(royalty / (parseFloat(document.getElementById(format==='ebook'?'ebPrice':'prPrice').value)||1) * 100) + '%';
+    document.getElementById('breakdown').innerHTML = breakdown;
+    document.getElementById('breakevenVal').textContent = breakeven;
+    res.style.display = 'block';
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calc);
+  ['ebPrice','ebFileSize','prPrice','prPages','prInk','prTrim'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
