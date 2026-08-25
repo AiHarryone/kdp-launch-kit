@@ -19,6 +19,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://aiharryone.github.io/kdp-launch-kit/isbn-converter.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiharryone.github.io/kdp-launch-kit/description-html-formatter.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiharryone.github.io/kdp-launch-kit/keyword-character-checker.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aiharryone.github.io/kdp-launch-kit/kdp-keyword-generator.html</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="msvalidate.01" content="E62785F51D89A3BD3AFBB2BC2BB07BF9">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP Description HTML Formatter – Bold, Italics & Line Breaks (Free)</title>
+<meta name="description" content="Free KDP description HTML formatter. Turn plain text into Amazon-ready HTML with bold, italics and line breaks. Live preview, copy the code, paste into KDP. No signup.">
+<link rel="canonical" href="https://aiharryone.github.io/kdp-launch-kit/description-html-formatter.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does Amazon KDP descriptions support HTML?","acceptedAnswer":{"@type":"Answer","text":"Yes — KDP book descriptions support a subset of HTML: bold, italics, line breaks, and a few other tags. Using them makes your description stand out."}},
+{"@type":"Question","name":"How do I make text bold in a KDP description?","acceptedAnswer":{"@type":"Answer","text":"Wrap the text in &lt;b&gt; and &lt;/b&gt; tags. This tool generates the HTML for you with a live preview."}},
+{"@type":"Question","name":"Why should I use HTML in my book description?","acceptedAnswer":{"@type":"Answer","text":"Formatting breaks up the wall of text, highlights benefits, and makes shoppers more likely to read — and buy. Clean descriptions convert better."}},
+{"@type":"Question","name":"Is this formatter free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no signup, runs entirely in your browser."}}
+]}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:#eef9ff;color:#33556b;line-height:1.6;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px;}
+  header{background:linear-gradient(135deg,#9fd8ff,#d6f2ff);padding:28px 0;}
+  nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .logo{font-weight:bold;font-size:20px;color:#2c6d8f;}
+  .logo a{color:#2c6d8f;text-decoration:none;}
+  .btn{display:inline-block;background:#e07b4f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:30px;font-weight:bold;transition:.2s;border:none;cursor:pointer;}
+  .btn:hover{background:#c9683f;}
+  .btn.ghost{background:#fff;color:#3b7ea1;border:2px solid #7ec8e3;}
+  .btn.green{background:#27ae60;}
+  .btn.green:hover{background:#1f9b52;}
+  .btn.sm{padding:8px 18px;font-size:14px;margin-top:6px;}
+  .hero{text-align:center;padding:44px 0 24px;}
+  .hero h1{font-size:32px;color:#2c6d8f;margin-bottom:12px;}
+  .hero p{font-size:18px;margin-bottom:20px;}
+  section{padding:26px 0;}
+  h2{color:#2c6d8f;margin-bottom:14px;font-size:24px;}
+  .calc{background:#fff;border-radius:16px;padding:26px;box-shadow:0 4px 14px rgba(80,140,170,.12);}
+  label{display:block;font-weight:bold;margin:14px 0 5px;color:#2c6d8f;}
+  textarea{width:100%;padding:12px;border:2px solid #bfe0f0;border-radius:10px;font-size:15px;min-height:130px;resize:vertical;background:#fff;font-family:inherit;}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
+  .tbtn{background:#f4fbff;border:2px solid #bfe0f0;border-radius:8px;padding:7px 14px;cursor:pointer;font-weight:bold;color:#3b7ea1;font-size:14px;}
+  .tbtn:hover{background:#d6f2ff;}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:640px){.cols{grid-template-columns:1fr;}}
+  .panel{background:#f4fbff;border-radius:12px;padding:16px 18px;}
+  .panel h3{color:#2c6d8f;margin-bottom:8px;font-size:16px;}
+  .panel .label{font-size:12px;color:#7a9db1;margin-bottom:6px;}
+  #htmlOut{background:#fafdff;border:1px dashed #bfe0f0;border-radius:8px;padding:12px;font-family:monospace;font-size:13px;white-space:pre-wrap;word-break:break-all;min-height:120px;}
+  #previewOut{background:#fff;border:1px solid #dcecf4;border-radius:8px;padding:16px;min-height:120px;font-size:15px;}
+  .note{font-size:13px;color:#7a9db1;margin-top:10px;}
+  .faq p{margin-bottom:10px;background:#fff;border-radius:10px;padding:14px 18px;}
+  .faq b{color:#2c6d8f;}
+  footer{background:#d6f2ff;padding:22px 0;text-align:center;font-size:14px;color:#5a8fae;}
+  footer a{color:#3b7ea1;}
+  .related{margin-top:40px;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(80,140,170,.12);padding:24px;}
+  .related h2{color:#2c6d8f;margin-bottom:12px;font-size:20px;}
+  .related a{display:inline-block;background:#f4fbff;color:#3b7ea1;border:1px solid #bfe0f0;border-radius:20px;padding:6px 14px;margin:4px 6px 0 0;text-decoration:none;font-size:14px;font-weight:bold;}
+  .related a:hover{background:#d6f2ff;}
+  @media(max-width:600px){.hero h1{font-size:26px;}.btn{display:block;margin:8px 0;text-align:center;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><a href="index.html">KDP Launch Kit</a></div>
+    <div>
+      <a href="kdp-keyword-generator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Keyword Generator</a>
+      <a href="royalty-calculator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Royalty Calculator</a>
+      <a class="btn ghost" href="tool.html" style="margin-right:8px;">Try Free</a>
+      <a class="btn" href="tool.html">Launch Kit Generator</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>KDP Description HTML Formatter</h1>
+    <p>Turn plain text into an Amazon-ready, beautifully formatted description. Free.</p>
+  </div>
+
+  <section>
+    <div class="calc">
+      <label for="textIn">Your description (plain text)</label>
+      <textarea id="textIn" placeholder="A heartwarming story of friendship and adventure.&#10;&#10;Inside you'll discover:&#10;• A brave young hero who learns the power of kindness&#10;• Stunning illustrations on every page&#10;• A lesson the whole family will love"></textarea>
+
+      <div class="toolbar">
+        <button type="button" class="tbtn" data-wrap="**">Bold</button>
+        <button type="button" class="tbtn" data-wrap="*">Italic</button>
+        <button type="button" class="tbtn" data-wrap="~">Bullet list</button>
+        <button type="button" class="tbtn" data-act="heading">Heading</button>
+        <button type="button" class="tbtn" data-act="clear">Clear</button>
+      </div>
+
+      <div class="cols">
+        <div class="panel">
+          <div class="label">Generated HTML code</div>
+          <div id="htmlOut">&lt;p&gt;Your formatted HTML appears here&lt;/p&gt;</div>
+          <button class="btn sm green" id="copyBtn">Copy HTML</button>
+        </div>
+        <div class="panel">
+          <div class="label">Live preview (as Amazon shoppers see it)</div>
+          <div id="previewOut"></div>
+        </div>
+      </div>
+
+      <div class="note">Formatting guide: wrap text in <b>**bold**</b>, <b>*italic*</b>, start a line with <b>~</b> for a bullet, or <b>#</b> for a heading. Paste the generated HTML into the KDP description box.</div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Why Format Your Description</h2>
+    <p><b>Stand out:</b> Shoppers scroll fast. Bold headings and bullets make the value obvious in seconds.</p>
+    <p><b>Convert better:</b> A clean, scannable description gets more page reads and more sales.</p>
+    <p><b>No skill needed:</b> You don't need to know HTML — type, tap a button, copy, paste.</p>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <p><b>Does KDP support HTML in descriptions?</b> Yes — bold, italics, line breaks and a few tags are supported.</p>
+    <p><b>Is this formatter free?</b> Yes — completely free, no signup, runs in your browser.</p>
+    <p><b>Can I preview before publishing?</b> Yes — the right panel shows a live preview as shoppers would see it.</p>
+  </section>
+
+  <div class="related">
+    <h2>More Free KDP Tools</h2>
+    <a href="royalty-calculator.html">Royalty Calculator</a>
+    <a href="isbn-converter.html">ISBN Converter</a>
+    <a href="keyword-character-checker.html">Keyword Character Checker</a>
+    <a href="tool.html">Launch Kit Generator</a>
+    <a href="amazon-description-generator.html">Description Generator</a>
+    <a href="kdp-keyword-generator.html">Keyword Generator</a>
+    <a href="book-title-generator.html">Book Title Generator</a>
+  </div>
+</div>
+
+<footer>
+  Made for indie authors who believe every book deserves a good launch. Questions? Contact: Ai_harryone@outlook.com · <a href="description-html-formatter.html">Description Formatter</a> · <a href="isbn-converter.html">ISBN Converter</a> · <a href="royalty-calculator.html">Royalty Calculator</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+</footer>
+
+<script>
+(function(){
+  var textIn=document.getElementById('textIn');
+  var htmlOut=document.getElementById('htmlOut');
+  var previewOut=document.getElementById('previewOut');
+
+  function escapeHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function toHTML(text){
+    var lines=String(text||'').split('\n');
+    var html=[];
+    var inList=false;
+    function closeList(){ if(inList){ html.push('</p><p>&bull; items in a list'); inList=false; } }
+    // We'll build a simpler robust approach:
+    var out='';
+    var list=[];
+    for(var i=0;i<lines.length;i++){
+      var line=lines[i];
+      if(/^\s*#\s/.test(line)){
+        out += '<p><b>' + fmtInline(line.replace(/^\s*#\s*/,'')) + '</b></p>';
+      } else if(/^\s*~\s/.test(line)){
+        list.push(fmtInline(line.replace(/^\s*~\s*/,'')));
+      } else {
+        if(list.length){ out += '<p><b>Highlights:</b></p><p>' + list.map(function(b){return '&bull; '+b;}).join('<br>') + '</p>'; list=[]; }
+        out += '<p>' + fmtInline(line) + '</p>';
+      }
+    }
+    if(list.length){ out += '<p><b>Highlights:</b></p><p>' + list.map(function(b){return '&bull; '+b;}).join('<br>') + '</p>'; }
+    return out || '<p></p>';
+  }
+
+  function fmtInline(line){
+    var s=escapeHtml(line);
+    // **bold** first
+    s=s.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+    // *italic*
+    s=s.replace(/(^|[^*])\*([^*\n]+)\*/g,'$1<i>$2</i>');
+    return s;
+  }
+
+  function render(){
+    var html=toHTML(textIn.value);
+    htmlOut.innerHTML=escapeHtml(html);
+    previewOut.innerHTML=html;
+  }
+
+  // toolbar actions
+  function wrapSelection(before,after){
+    var el=textIn;
+    var s=el.selectionStart, e=el.selectionEnd;
+    if(s===e){ // no selection: insert placeholder
+      el.value=el.value.slice(0,s)+before+'text'+after+el.value.slice(e);
+      el.focus();
+      el.selectionStart=s+before.length;
+      el.selectionEnd=s+before.length+'text'.length;
+    } else {
+      var sel=el.value.slice(s,e);
+      el.value=el.value.slice(0,s)+before+sel+after+el.value.slice(e);
+      el.focus();
+      el.selectionStart=s+before.length;
+      el.selectionEnd=e+before.length;
+    }
+    render();
+  }
+  function prependToLine(prefix){
+    var el=textIn;
+    var s=el.selectionStart;
+    // find start of current line
+    var lineStart=el.value.lastIndexOf('\n', s-1)+1;
+    el.value=el.value.slice(0,lineStart)+prefix+el.value.slice(lineStart);
+    el.focus();
+    el.selectionStart=s+prefix.length;
+    el.selectionEnd=s+prefix.length;
+    render();
+  }
+
+  document.querySelectorAll('.tbtn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var wrap=btn.getAttribute('data-wrap');
+      var act=btn.getAttribute('data-act');
+      if(wrap==='**') wrapSelection('**','**');
+      else if(wrap==='*') wrapSelection('*','*');
+      else if(wrap==='~') prependToLine('~ ');
+      else if(act==='heading') prependToLine('# ');
+      else if(act==='clear'){ textIn.value=''; render(); }
+    });
+  });
+
+  textIn.addEventListener('input', render);
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var text=htmlOut.textContent;
+    function done(){ var b=document.getElementById('copyBtn'); b.textContent='Copied!'; setTimeout(function(){b.textContent='Copy HTML';},1500); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,function(){fallback();}); }
+    else fallback();
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=text; document.body.appendChild(ta); ta.select();
+      try{document.execCommand('copy');}catch(e){}
+      document.body.removeChild(ta); done();
+    }
+  });
+
+  // example prefill
+  if(!textIn.value.trim()){
+    textIn.value='A heartwarming story of friendship and adventure.\n\n# What\'s inside\n~ A brave young hero who learns the power of kindness\n~ Stunning illustrations on every page\n~ A lesson the whole family will love\n\nPerfect for children aged 3-6 and anyone who believes in the magic of books.';
+  }
+  render();
+})();
+</script>
+</body>
+</html>

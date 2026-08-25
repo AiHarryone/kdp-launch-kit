@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="msvalidate.01" content="E62785F51D89A3BD3AFBB2BC2BB07BF9">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP Keyword Character Checker – Stay Under 50 Characters (Free)</title>
+<meta name="description" content="Free KDP keyword character checker. Enter your 7 keyword slots and instantly see character counts, over-limit warnings, and suggested trims. Amazon allows 50 characters per keyword slot. No signup.">
+<link rel="canonical" href="https://aiharryone.github.io/kdp-launch-kit/keyword-character-checker.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How many characters can a KDP keyword be?","acceptedAnswer":{"@type":"Answer","text":"Each of Amazon's 7 keyword slots allows up to 50 characters. Use all 7 slots and keep each under 50 characters to maximize discoverability."}},
+{"@type":"Question","name":"Should I use commas in KDP keywords?","acceptedAnswer":{"@type":"Answer","text":"No — commas waste space. Use spaces only, so each slot reads as a natural phrase."}},
+{"@type":"Question","name":"Do KDP keywords count spaces?","acceptedAnswer":{"@type":"Answer","text":"Yes — spaces count toward the 50-character limit. Check your counts with this free tool."}},
+{"@type":"Question","name":"Is this keyword checker free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no signup, runs entirely in your browser."}}
+]}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:#eef9ff;color:#33556b;line-height:1.6;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px;}
+  header{background:linear-gradient(135deg,#9fd8ff,#d6f2ff);padding:28px 0;}
+  nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .logo{font-weight:bold;font-size:20px;color:#2c6d8f;}
+  .logo a{color:#2c6d8f;text-decoration:none;}
+  .btn{display:inline-block;background:#e07b4f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:30px;font-weight:bold;transition:.2s;border:none;cursor:pointer;}
+  .btn:hover{background:#c9683f;}
+  .btn.ghost{background:#fff;color:#3b7ea1;border:2px solid #7ec8e3;}
+  .btn.green{background:#27ae60;}
+  .btn.green:hover{background:#1f9b52;}
+  .btn.sm{padding:8px 18px;font-size:14px;margin-top:6px;}
+  .hero{text-align:center;padding:44px 0 24px;}
+  .hero h1{font-size:32px;color:#2c6d8f;margin-bottom:12px;}
+  .hero p{font-size:18px;margin-bottom:20px;}
+  section{padding:26px 0;}
+  h2{color:#2c6d8f;margin-bottom:14px;font-size:24px;}
+  .calc{background:#fff;border-radius:16px;padding:26px;box-shadow:0 4px 14px rgba(80,140,170,.12);}
+  .kw-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+  .kw-num{width:34px;height:34px;border-radius:50%;background:#d6f2ff;color:#2c6d8f;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .kw-input{flex:1;min-width:240px;}
+  .kw-input input{width:100%;padding:11px;border:2px solid #bfe0f0;border-radius:10px;font-size:15px;background:#fff;}
+  .kw-input input.ok{border-color:#b8e6c8;}
+  .kw-input input.over{border-color:#e74c3c;background:#fdecea;}
+  .kw-count{font-weight:bold;font-size:15px;color:#7a9db1;min-width:44px;text-align:right;}
+  .kw-count.over{color:#e74c3c;}
+  .kw-count.ok{color:#27ae60;}
+  .summary{background:#f4fbff;border-radius:12px;padding:16px 18px;margin-top:16px;}
+  .summary .big{font-size:26px;font-weight:bold;color:#e07b4f;}
+  .summary .lbl{font-weight:bold;color:#2c6d8f;}
+  .summary .sub{font-size:13px;color:#7a9db1;margin-top:4px;}
+  .note{font-size:13px;color:#7a9db1;margin-top:14px;}
+  .faq p{margin-bottom:10px;background:#fff;border-radius:10px;padding:14px 18px;}
+  .faq b{color:#2c6d8f;}
+  footer{background:#d6f2ff;padding:22px 0;text-align:center;font-size:14px;color:#5a8fae;}
+  footer a{color:#3b7ea1;}
+  .related{margin-top:40px;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(80,140,170,.12);padding:24px;}
+  .related h2{color:#2c6d8f;margin-bottom:12px;font-size:20px;}
+  .related a{display:inline-block;background:#f4fbff;color:#3b7ea1;border:1px solid #bfe0f0;border-radius:20px;padding:6px 14px;margin:4px 6px 0 0;text-decoration:none;font-size:14px;font-weight:bold;}
+  .related a:hover{background:#d6f2ff;}
+  @media(max-width:600px){.hero h1{font-size:26px;}.btn{display:block;margin:8px 0;text-align:center;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><a href="index.html">KDP Launch Kit</a></div>
+    <div>
+      <a href="kdp-keyword-generator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Keyword Generator</a>
+      <a href="royalty-calculator.html" style="color:#3b7ea1;margin-right:16px;font-weight:bold;text-decoration:none;">Royalty Calculator</a>
+      <a class="btn ghost" href="tool.html" style="margin-right:8px;">Try Free</a>
+      <a class="btn" href="tool.html">Launch Kit Generator</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>KDP Keyword Character Checker</h1>
+    <p>Amazon allows 7 keyword slots, 50 characters each. Check yours in seconds — free.</p>
+  </div>
+
+  <section>
+    <div class="calc">
+      <div id="kwList"></div>
+      <button class="btn sm" id="addBtn" style="background:#d6f2ff;color:#2c6d8f;border:2px solid #7ec8e3;">+ Add Keyword Slot</button>
+
+      <div class="summary">
+        <div class="lbl">Status</div>
+        <div class="big" id="statusBig">All slots ready</div>
+        <div class="sub" id="statusSub">7 slots · 0 over the 50-character limit</div>
+      </div>
+      <div class="note">Tips: Don't use commas — they waste space. Use natural phrases ("coloring book for kids" beats "kids, coloring, book"). Reuse titles and categories already in your listing — Amazon doesn't need repeats.</div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>KDP Keyword Rules</h2>
+    <p><b>7 slots, 50 characters each.</b> Every slot is a chance to be found on Amazon search.</p>
+    <p><b>No commas.</b> Commas split a slot and waste characters. Use spaces only.</p>
+    <p><b>Spaces count.</b> Each space counts toward the 50-character limit.</p>
+    <p><b>Don't repeat.</b> Don't reuse words already in your title, subtitle or category — it wastes discoverability.</p>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <p><b>How many characters is a KDP keyword?</b> Up to 50 per slot, 7 slots total.</p>
+    <p><b>Is this checker free?</b> Yes — completely free, no signup, runs in your browser.</p>
+    <p><b>Can I save my keywords?</b> They're saved in your browser's local storage automatically — close the tab and come back later.</p>
+  </section>
+
+  <div class="related">
+    <h2>More Free KDP Tools</h2>
+    <a href="royalty-calculator.html">Royalty Calculator</a>
+    <a href="isbn-converter.html">ISBN Converter</a>
+    <a href="description-html-formatter.html">Description Formatter</a>
+    <a href="tool.html">Launch Kit Generator</a>
+    <a href="kdp-keyword-generator.html">Keyword Generator</a>
+    <a href="kdp-keywords-guide.html">Keywords Guide</a>
+    <a href="book-title-generator.html">Book Title Generator</a>
+  </div>
+</div>
+
+<footer>
+  Made for indie authors who believe every book deserves a good launch. Questions? Contact: Ai_harryone@outlook.com · <a href="keyword-character-checker.html">Keyword Checker</a> · <a href="royalty-calculator.html">Royalty Calculator</a> · <a href="isbn-converter.html">ISBN Converter</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+</footer>
+
+<script>
+(function(){
+  var MAX=50;
+  var kwList=document.getElementById('kwList');
+  var stored=[];
+  try{ stored=JSON.parse(localStorage.getItem('kdp_kw_slots')||'[]'); }catch(e){}
+  var slots=Array.isArray(stored)&&stored.length?stored:['','','','','','',''];
+
+  function save(){
+    try{ localStorage.setItem('kdp_kw_slots', JSON.stringify(slots)); }catch(e){}
+  }
+
+  function countAll(){
+    var total=0, over=0, filled=0;
+    slots.forEach(function(s){
+      var n=s.length;
+      total+=n;
+      if(s.trim()) filled++;
+      if(n>MAX) over++;
+    });
+    return {total:total, over:over, filled:filled};
+  }
+
+  function render(){
+    kwList.innerHTML='';
+    slots.forEach(function(val,i){
+      var row=document.createElement('div');
+      row.className='kw-row';
+      var n=val.length;
+      var over=n>MAX;
+      var num=document.createElement('div');
+      num.className='kw-num';
+      num.textContent=i+1;
+      var inpWrap=document.createElement('div');
+      inpWrap.className='kw-input';
+      var inp=document.createElement('input');
+      inp.type='text';
+      inp.value=val;
+      inp.className=over?'over':(n>0?'ok':'');
+      inp.maxLength=80;
+      inp.setAttribute('aria-label','Keyword slot '+(i+1));
+      inp.addEventListener('input',function(){
+        slots[i]=inp.value;
+        if(n>MAX) over=true;
+        save(); render();
+      });
+      inpWrap.appendChild(inp);
+      var cnt=document.createElement('div');
+      cnt.className='kw-count'+(over?' over':(n>0?' ok':''));
+      cnt.textContent=n;
+      if(over) cnt.title='Over 50 characters — trim this';
+      row.appendChild(num); row.appendChild(inpWrap); row.appendChild(cnt);
+      kwList.appendChild(row);
+    });
+
+    var c=countAll();
+    var big=document.getElementById('statusBig');
+    var sub=document.getElementById('statusSub');
+    if(c.over>0){
+      big.textContent=c.over+' slot'+(c.over>1?'s':'')+' over limit';
+      big.style.color='#e74c3c';
+    } else {
+      big.textContent='All slots ready';
+      big.style.color='#e07b4f';
+    }
+    sub.textContent=slots.length+' slots · '+c.filled+' filled · '+c.over+' over · '+c.total+' chars total';
+  }
+
+  document.getElementById('addBtn').addEventListener('click',function(){
+    if(slots.length>=20){ alert('That\'s plenty — KDP only uses 7 slots.'); return; }
+    slots.push(''); save(); render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
