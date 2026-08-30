@@ -8,7 +8,7 @@ Live at: **https://aiharryone.github.io/kdp-launch-kit/**
 
 | Tool | What it does | Open |
 |---|---|---|
-| 🧮 [Royalty Calculator](https://aiharryone.github.io/kdp-launch-kit/royalty-calculator.html) | See exactly what you earn per book — ebook (70%/35% plans), paperback & hardcover, with printing costs and breakeven price | [→](https://aiharryone.github.io/kdp-launch-kit/royalty-calculator.html) |
+| 🧮 [Royalty Calculator](https://aiharryone.github.io/kdp-launch-kit/royalty-calculator.html) | See exactly what you earn per book — ebook (60%/35% plans), paperback & hardcover, with printing costs and breakeven price | [→](https://aiharryone.github.io/kdp-launch-kit/royalty-calculator.html) |
 | 🔢 [ISBN Converter](https://aiharryone.github.io/kdp-launch-kit/isbn-converter.html) | Convert ISBN-10 ↔ ISBN-13, validate check digits, instantly | [→](https://aiharryone.github.io/kdp-launch-kit/isbn-converter.html) |
 | ✍️ [Description Formatter](https://aiharryone.github.io/kdp-launch-kit/description-html-formatter.html) | Turn plain text into Amazon-ready HTML (bold, bullets, line breaks) with live preview | [→](https://aiharryone.github.io/kdp-launch-kit/description-html-formatter.html) |
 | 🔤 [Keyword Character Checker](https://aiharryone.github.io/kdp-launch-kit/keyword-character-checker.html) | Keep your 7 keyword slots under Amazon's 50-character limit | [→](https://aiharryone.github.io/kdp-launch-kit/keyword-character-checker.html) |
@@ -28,7 +28,14 @@ Free for 3 uses, no signup. Unlimited access is a **one-time $9.99** — no subs
 ## 📚 Guides & Resources
 
 - [KDP Keywords Guide](https://aiharryone.github.io/kdp-launch-kit/kdp-keywords-guide.html) — the 7-slot strategy that actually works
+- [KDP Royalties Explained](https://aiharryone.github.io/kdp-launch-kit/kdp-royalty-calculator-guide.html) — how much Amazon KDP actually pays
+- [KDP Trim Sizes Guide](https://aiharryone.github.io/kdp-launch-kit/kdp-trim-sizes-guide.html) — every approved size and what to pick
+- [How to Publish a Coloring Book on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-publish-a-coloring-book-on-kdp.html) — step-by-step
+- [How to Publish a Journal on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-publish-a-journal-on-kdp.html) — step-by-step
 - [KDP Niches Guide](https://aiharryone.github.io/kdp-launch-kit/kdp-niches-guide.html) — find profitable niches
+- [KDP Paperback vs Hardcover](https://aiharryone.github.io/kdp-launch-kit/kdp-paperback-vs-hardcover.html) — which to choose
+- [KDP Bleed Explained](https://aiharryone.github.io/kdp-launch-kit/kdp-bleed-guide.html) — when you need it, how to set it
+- [Book Title Generator](https://aiharryone.github.io/kdp-launch-kit/book-title-generator.html)
 - [Children's Book Title Ideas](https://aiharryone.github.io/kdp-launch-kit/childrens-book-title-ideas.html)
 - [Journal Title Ideas](https://aiharryone.github.io/kdp-launch-kit/journal-title-ideas.html)
 - [Low-Content Book Ideas](https://aiharryone.github.io/kdp-launch-kit/low-content-book-ideas.html)
@@ -38,6 +45,11 @@ Free for 3 uses, no signup. Unlimited access is a **one-time $9.99** — no subs
 ## 🛠 Tech
 
 100% static HTML + vanilla JS. No server, no signup, no tracking. Everything runs in your browser — your data never leaves your device.
+
+## 💡 Also built by the same person
+
+- [PixelFix](https://aiharryone.github.io/pixelfix/) — 9 free browser photo tools (compress, passport photos, remove background, PDF, GIF, watermark, scan, restore & animate)
+- [Certificate Maker](https://aiharryone.github.io/certificate-maker/) — free online certificate generator
 
 ## 📄 License & Legal
 
