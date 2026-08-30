@@ -199,13 +199,25 @@
       .then(function(data){
         if(data.ok){
           localStorage.setItem('kdpkit_unlocked','1');
-          if(data.instanceId) localStorage.setItem('kdpkit_instances', JSON.stringify([data.instanceId]));
+          if(data.instanceId){
+            localStorage.setItem('kdpkit_instances', JSON.stringify([data.instanceId]));
+            try{ localStorage.setItem('kdpkit_license', JSON.stringify({ key: code, instanceId: data.instanceId })); }catch(e){}
+          }
           used=0;
           return true;
         }
         return false;
       });
   }
+  // Reuse a stored license on load via /validate — never re-activate the same key.
+  (function(){
+    var lic; try{ lic = JSON.parse(localStorage.getItem('kdpkit_license') || 'null'); }catch(e){ lic = null; }
+    if(!lic || !lic.key) return;
+    fetch(UNLOCK_API + '/validate', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ key: lic.key, instanceId: lic.instanceId || '' }) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }); })
+      .then(function(d){ if(d.ok){ localStorage.setItem('kdpkit_unlocked','1'); } })
+      .catch(function(){});
+  })();
   function tryTokenUnlock(){
     var m;
     try{ m=location.search.match(/[?&]unlock=([^&]+)/); }catch(e){}
