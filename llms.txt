@@ -1,0 +1,42 @@
+# KDP Launch Kit
+
+> Free tools for Amazon KDP self-publishers: a royalty calculator, ISBN converter, description HTML formatter, keyword checker, and the Launch Kit generator that turns one book topic into a complete, publish-ready Amazon listing (5 titles + subtitle + description + 7 keywords). Free for 3 uses; a one-time $9.99 unlocks unlimited use.
+
+## Tools
+
+- [Launch Kit Generator](https://aiharryone.github.io/kdp-launch-kit/tool.html): Type a book topic and get 5 title ideas, a subtitle, a conversion-focused Amazon description and all 7 keyword slots.
+- [Royalty Calculator](https://aiharryone.github.io/kdp-launch-kit/royalty-calculator.html): See exactly what you earn per book — ebook (60%/35% plans), paperback and hardcover, with printing costs and breakeven price.
+- [ISBN Converter](https://aiharryone.github.io/kdp-launch-kit/isbn-converter.html): Convert ISBN-10 to ISBN-13 and back, validate check digits instantly.
+- [Description Formatter](https://aiharryone.github.io/kdp-launch-kit/description-html-formatter.html): Turn plain text into Amazon-ready HTML (bold, bullets, line breaks) with live preview.
+- [Keyword Character Checker](https://aiharryone.github.io/kdp-launch-kit/keyword-character-checker.html): Keep your 7 keyword slots under Amazon's 50-character limit.
+- [Keyword Generator](https://aiharryone.github.io/kdp-launch-kit/kdp-keyword-generator.html): Free keyword ideas that get your book found in Amazon search.
+
+## Guides & Reference
+
+- [KDP Keywords Guide](https://aiharryone.github.io/kdp-launch-kit/kdp-keywords-guide.html): The 7-slot keyword strategy that actually works.
+- [How to Publish a Coloring Book on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-publish-a-coloring-book-on-kdp.html): Step-by-step publishing guide.
+- [How to Publish a Journal on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-publish-a-journal-on-kdp.html): Step-by-step publishing guide.
+- [How to Publish a Low-Content Book on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-publish-a-low-content-book-on-kdp.html): Step-by-step publishing guide.
+- [How to Publish a Children's Book on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-publish-a-childrens-book-on-kdp.html): Step-by-step publishing guide.
+- [KDP Royalties Explained](https://aiharryone.github.io/kdp-launch-kit/kdp-royalty-calculator-guide.html): How much Amazon KDP actually pays.
+- [KDP Trim Sizes Guide](https://aiharryone.github.io/kdp-launch-kit/kdp-trim-sizes-guide.html): Every approved trim size and what to pick.
+- [KDP Pricing Guide](https://aiharryone.github.io/kdp-launch-kit/kdp-pricing-guide.html): How to price your paperback and ebook.
+- [KDP Paperback vs Hardcover](https://aiharryone.github.io/kdp-launch-kit/kdp-paperback-vs-hardcover.html): Which format to choose.
+- [KDP Printing Cost](https://aiharryone.github.io/kdp-launch-kit/kdp-printing-cost.html): How Amazon calculates printing costs.
+- [How to Self-Publish a Book on Amazon](https://aiharryone.github.io/kdp-launch-kit/how-to-self-publish-a-book-on-amazon.html): End-to-end self-publishing guide.
+- [How to Make Money on KDP](https://aiharryone.github.io/kdp-launch-kit/how-to-make-money-on-kdp.html): Realistic income guide for 2026.
+- [How to Make a KDP Book Cover](https://aiharryone.github.io/kdp-launch-kit/how-to-make-a-kdp-book-cover.html): Cover dimensions and design guide.
+- [KDP Niches 2026](https://aiharryone.github.io/kdp-launch-kit/kdp-niches-2026.html): Profitable niches this year.
+- [Book Title Generator](https://aiharryone.github.io/kdp-launch-kit/book-title-generator.html): Generate book title ideas for any topic.
+- [Amazon Book Keywords](https://aiharryone.github.io/kdp-launch-kit/amazon-book-keywords.html): How Amazon search keywords work.
+
+## Pricing
+
+- All tools: free for 3 uses, no signup.
+- $9.99 one-time (no subscription): unlimited use.
+
+## Resources
+
+- [Sitemap](https://aiharryone.github.io/kdp-launch-kit/sitemap.xml)
+- [Terms of Service](https://aiharryone.github.io/kdp-launch-kit/terms.html)
+- [Privacy Policy](https://aiharryone.github.io/kdp-launch-kit/privacy.html)

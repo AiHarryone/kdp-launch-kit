@@ -1,5 +1,9 @@
 # KDP Launch Kit — Free Tools for Amazon KDP Authors
 
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f)
+![Browser only](https://img.shields.io/badge/runs-100%25%20in%20browser-2c6d8f)
+![Pricing](https://img.shields.io/badge/free%203%20uses%20%E2%86%92%20%249.99%20one--time-e07b4f)
+
 **Launch your next KDP book faster.** Free tools for self-publishing: a royalty calculator, ISBN converter, description HTML formatter, keyword checker, and the Launch Kit generator that turns one book topic into a complete, publish-ready Amazon listing.
 
 Live at: **https://aiharryone.github.io/kdp-launch-kit/**
@@ -41,6 +45,28 @@ Free for 3 uses, no signup. Unlimited access is a **one-time $9.99** — no subs
 - [Low-Content Book Ideas](https://aiharryone.github.io/kdp-launch-kit/low-content-book-ideas.html)
 - [Book Description Examples](https://aiharryone.github.io/kdp-launch-kit/book-description-examples.html)
 - [Book Subtitle Ideas](https://aiharryone.github.io/kdp-launch-kit/book-subtitle-ideas.html)
+
+## ❓ FAQ
+
+<details>
+<summary><b>Do I need an account?</b></summary>
+No signup, no email. All tools are free for 3 uses; a one-time $9.99 (no subscription) unlocks unlimited use.
+</details>
+
+<details>
+<summary><b>What does the Launch Kit Generator produce?</b></summary>
+Type one book topic and get 5 title ideas, a subtitle, a conversion-focused Amazon description, and all 7 keyword slots — ready to paste into KDP.
+</details>
+
+<details>
+<summary><b>Is my book idea kept private?</b></summary>
+Yes — everything runs 100% in your browser. Your topic, titles and keywords never leave your device.
+</details>
+
+<details>
+<summary><b>Does one payment unlock everything?</b></summary>
+Yes — $9.99 one-time unlocks all tools (Launch Kit, royalty calculator, ISBN converter, description formatter, keyword tools) forever.
+</details>
 
 ## 🛠 Tech
 
