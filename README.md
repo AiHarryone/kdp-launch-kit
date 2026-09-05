@@ -74,6 +74,8 @@ Yes — $9.99 one-time unlocks all tools (Launch Kit, royalty calculator, ISBN c
 
 ## 💡 Also built by the same person
 
+- 🎃 [TrendSnap](https://aiharryone.github.io/trendsnap/) — free Halloween Invitation Maker with 20 hand-drawn templates, in your browser, nothing uploaded
+
 - [PixelFix](https://aiharryone.github.io/pixelfix/) — 9 free browser photo tools (compress, passport photos, remove background, PDF, GIF, watermark, scan, restore & animate)
 - [Certificate Maker](https://aiharryone.github.io/certificate-maker/) — free online certificate generator
 
